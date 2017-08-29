@@ -23,3 +23,24 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Category::class, function (Faker $faker) {
+    static $password;
+
+    return [
+        'category_name' => $faker->randomElement([ 'Sea Food','Drink', 'Soup' ]),
+        'sort' => 0
+    ];
+});
+
+$factory->define(App\Item::class, function (Faker $faker) {
+    static $password;
+
+    return [
+        'code' => str_random(4),
+    	'name' => $faker->randomElement([ 'Beef','Chicken' ]),
+    	'remark' => null,
+    	'price' => json_encode([ 'S' => 1 , 'M' => 2, 'L' => 3]),
+    	'category_id' => function () { return factory(App\Category::class)->create()->id; },
+    ];
+});
