@@ -14,13 +14,15 @@ class CreateSaleDetailsTable extends Migration
     public function up()
     {
         Schema::create('sale_details', function (Blueprint $table) {
-            $table->string('soid',20);
-            $table->string('item_code',20);
+            $table->increments('id');
+            $table->integer('sale_id')->unsigned()->index();
+            $table->string('item_code', 20)->index();
             $table->string('item_name');
             $table->float('quantity');
             $table->double('price');
-            $table->string('remark');
-            $table->char('status',2);
+            $table->string('remark')->nullable();
+            $table->char('status', 2);
+            $table->softDeletes();
         });
     }
 
