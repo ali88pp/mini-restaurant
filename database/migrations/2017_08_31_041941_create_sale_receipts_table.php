@@ -14,15 +14,15 @@ class CreateSaleReceiptsTable extends Migration
     public function up()
     {
         Schema::create('sale_receipts', function (Blueprint $table) {
-            $table->increments('id')->index();
-            $table->dateTime('receipt_date');
-            $table->json('ref_id');
-            $table->double('amt_usd');
-            $table->double('amt_riel');
+            $table->increments('id');
+            $table->json('references_id');
+            $table->double('amount_usd');
+            $table->double('amount_riel');
             $table->double('change_usd');
             $table->double('change_riel');
             $table->boolean('is_active');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

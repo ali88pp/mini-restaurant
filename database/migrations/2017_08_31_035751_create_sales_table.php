@@ -15,17 +15,16 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('soid',20)->index();
-            $table->dateTime('sale_date');
-            $table->string('customer_id');
+            $table->integer('customer_id')->unsigned()->index();
             $table->string('order');
             $table->double('amount');
-            $table->decimal('vat',5,2);
-            $table->string('remark');
+            $table->decimal('vat', 5, 2);
+            $table->string('remark')->nullable();
             $table->integer('table_no');
             $table->integer('waiting_no');
             $table->boolean('is_active')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
