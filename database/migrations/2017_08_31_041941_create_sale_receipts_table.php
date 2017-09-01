@@ -21,6 +21,7 @@ class CreateSaleReceiptsTable extends Migration
             $table->double('change_usd');
             $table->double('change_riel');
             $table->boolean('is_active');
+            $table->timestamp('receipt_datetime');
             $table->timestamps();
             $table->softDeletes();
         });

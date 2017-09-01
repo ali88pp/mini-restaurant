@@ -23,6 +23,7 @@ class CreateSalesTable extends Migration
             $table->integer('table_no');
             $table->integer('waiting_no');
             $table->boolean('is_active')->default(0);
+            $table->timestamp('sale_datetime');
             $table->timestamps();
             $table->softDeletes();
         });

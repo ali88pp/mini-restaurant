@@ -22,7 +22,6 @@ class CreateSaleDetailsTable extends Migration
             $table->double('price');
             $table->string('remark')->nullable();
             $table->char('status', 2);
-            $table->softDeletes();
         });
     }
 
