@@ -10,8 +10,8 @@ class ItemController extends Controller
 {
     public function index ()
     {
-        $items = Item::with('category')->get();
-        return view('item.index', compact('items'));
+        return $items = Item::with('category')->get();
+        // return view('item.index', compact('items'));
     }
 
 
@@ -29,8 +29,8 @@ class ItemController extends Controller
         'category_id' => 'required|numeric'
       ]);
 
-      Item::create($request->all());
-      return redirect()->route('item');
+      return Item::create($request->all());
+      // return redirect()->route('item');
 
     }
 
@@ -48,9 +48,11 @@ class ItemController extends Controller
 
       $item = Item::find($request->id);
 
-      Item::update($request->all());
+      $item->update($request->all());
 
-      return redirect()->route('item');
+      return $item;
+
+      //return redirect()->route('item');
 
     }
 
