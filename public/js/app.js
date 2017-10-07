@@ -780,27 +780,13 @@ module.exports = __webpack_require__(40);
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 __webpack_require__(10);
-
 window.Vue = __webpack_require__(35);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
 
 Vue.component('example', __webpack_require__(36));
 
 var app = new Vue({
-  el: '#app'
+    el: '#app'
 });
 
 /***/ }),
@@ -43253,7 +43239,7 @@ var Component = __webpack_require__(37)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/home/bonnak/Porfolios/billing/resources/assets/js/components/Example.vue"
+Component.options.__file = "D:\\minirestaurant\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43264,9 +43250,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2ef02697", Component.options)
+    hotAPI.createRecord("data-v-703be6f2", Component.options)
   } else {
-    hotAPI.reload("data-v-2ef02697", Component.options)
+    hotAPI.reload("data-v-703be6f2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -43427,7 +43413,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-2ef02697", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-703be6f2", module.exports)
   }
 }
 
