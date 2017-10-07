@@ -10,20 +10,21 @@ class CategoryController extends Controller
   public function index()
   {
      $categories = Category::all();
-
-     return view('category.index', compact('categories'));
+     return $categories;
+    //  return view('category.index', compact('categories'));
   }
 
   public function create()
   {
-    return view('category.create');
+
+    // return view('category.create');
   }
 
   public function store(Request $request)
   {
-     Category::create($request->all());
+     return Category::create($request->all());
 
-     return redirect()->route('category');
+     //return redirect()->route('category');
   }
 
   public function show($id)
@@ -37,15 +38,15 @@ class CategoryController extends Controller
   {
     $category = Category::where('id', $id)->first();
 
-    return view('category.edit', compact('category'));
+    //return view('category.edit', compact('category'));
   }
 
   public function update(Request $request, $id)
   {
     $category = Category::where('id', $id)->first();
     $category->update($request->all());
-
-    return redirect()->route('category');
+    return $category;
+    //return redirect()->route('category');
   }
 
   public function destroy($id)
