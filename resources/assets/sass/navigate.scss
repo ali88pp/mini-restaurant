@@ -1,0 +1,11 @@
+.nav {
+  background-color: #768643;
+
+  a {
+    color: blue;
+  }
+
+  &.sub {
+    border: solid 1px black;
+  }
+}

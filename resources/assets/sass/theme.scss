@@ -1,0 +1,11 @@
+.abc {
+  color: red;
+
+  .aa {
+    color: blue;
+  }
+
+  &.aa {
+    color: orange;
+  }
+}

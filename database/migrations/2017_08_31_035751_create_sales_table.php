@@ -16,13 +16,12 @@ class CreateSalesTable extends Migration
         Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('customer_id')->unsigned()->index();
-            $table->string('order');
-            $table->double('amount');
-            $table->decimal('vat', 5, 2);
-            $table->string('remark')->nullable();
-            $table->integer('table_no');
-            $table->integer('waiting_no');
-            $table->boolean('is_active')->default(0);
+            $table->double('total_amount');
+            $table->double('total_discount');
+            $table->double('total_vat');
+            $table->double('grand_total'); // (amount - discount) + vat
+            $table->string('memo')->nullable();
+            $table->timestamp('sale_datetime');
             $table->timestamps();
             $table->softDeletes();
         });
