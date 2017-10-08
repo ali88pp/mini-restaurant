@@ -1,5 +1,7 @@
 @extends('_layout.master')
 
 @section('content')
-Awesome
+<div id="el">
+    <app></app>
+</div>
 @stop
