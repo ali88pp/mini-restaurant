@@ -9,9 +9,9 @@ class CustomerController extends Controller
 {
     public function index()
     {
-       $customers = Customer::all();
+       return $customers = Customer::all();
 
-       return view('customer.index', compact('customers'));
+       //return view('customer.index', compact('customers'));
     }
 
     public function create()
@@ -21,9 +21,9 @@ class CustomerController extends Controller
 
     public function store(Request $request)
     {
-       Customer::create($request->all());
+       return Customer::create($request->all());
 
-       return redirect()->route('customer');
+       //return redirect()->route('customer');
     }
 
     public function show($id)
@@ -44,8 +44,8 @@ class CustomerController extends Controller
     {
       $customer = customer::where('id', $id)->first();
       $customer->update($request->all());
-
-      return redirect()->route('customer');
+      return $customer;
+      // return redirect()->route('customer');
     }
 
     public function destroy($id)

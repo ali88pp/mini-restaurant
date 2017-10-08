@@ -3,32 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
 
 class OrderController extends Controller
 {
   public function index ()
   {
-    $orders = Order::all();
-    return view('order.index', compact('items'));
+    return $orders = Order::all();
+
+    //return view('order.index', compact('orders'));
   }
 
 
   public function create()
   {
-  $categories = Category::all();
-  return view('item.create', compact('categories'));
+    return view('order.create');
   }
 
   public function store(Request $request)
   {
-  $this->validate($request, [
-    'price.*.*' => 'required|numeric',
-    'name' => 'required',
-    'category_id' => 'required|numeric'
-  ]);
-
-  Item::create($request->all());
-  return redirect()->route('item');
-
+    return Order::create($request->all());
+    //return redirect()->route('order');
   }
+
+  public function update(Request $request, $id)
+  {
+    $order = Order::where('id', $id)->first();
+    $order->update($request->all());
+    return $order;
+    // return redirect()->route('customer');
+  }
+
 }
