@@ -51,10 +51,10 @@ Route::put('/customer/{id}/edit', 'CustomerController@update');
 Route::get('/customer/{id}', 'CustomerController@show')->name('customer.show');
 Route::delete('/customer/{id}', 'CustomerController@destroy')->name('customer.destroy');
 
-Route::get('/order', 'CustomerController@index')->name('order');
-Route::get('/order/create', 'CustomerController@create')->name('order.create');
-Route::post('/order/create', 'CustomerController@store');
-Route::get('/order/{id}/edit', 'CustomerController@edit')->name('order.edit');
-Route::put('/order/{id}/edit', 'CustomerController@update');
-Route::get('/order/{id}', 'CustomerController@show')->name('order.show');
-Route::delete('/order/{id}', 'CustomerController@destroy')->name('order.destroy');
+Route::get('/orders', 'OrderController@index')->name('order');
+Route::get('/order/create', 'OrderController@create')->name('order.create');
+Route::post('/order/create', 'OrderController@store');
+Route::get('/order/{id}/edit', 'OrderController@edit')->name('order.edit');
+Route::put('/order/{id}/edit', 'OrderController@update');
+Route::get('/order/{id}', 'OrderController@show')->name('order.show');
+Route::delete('/order/{id}', 'OrderController@destroy')->name('order.destroy');
