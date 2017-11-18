@@ -16,7 +16,7 @@
         v-bind:items="items"
         v-bind:search="search"
       >
-      <template slot="items" scope="props">
+      <template slot="items" slot-scope="props">
         <td>
           <v-edit-dialog
             lazy
@@ -58,7 +58,7 @@
           </v-edit-dialog>
         </td>
       </template>
-      <template slot="pageText" scope="{ pageStart, pageStop }">
+      <template slot="pageText" slot-scope="{ pageStart, pageStop }">
         From {{ pageStart }} to {{ pageStop }}
       </template>
     </v-data-table>
