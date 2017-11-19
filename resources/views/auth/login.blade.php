@@ -1,7 +1,7 @@
 @extends('_layouts.auth')
 
 @section('content')
-    <div id="auth">
+    <div id="application">
         <login></login>
     </div>
 @endsection

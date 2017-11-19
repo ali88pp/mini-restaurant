@@ -2,8 +2,9 @@
 
 import Vue from 'vue'
 import Vuetify from 'vuetify'
-import App from './components/App.vue'
 import router from './router'
+import App from './components/App.vue'
+import Login from './pages/login.vue'
 
 Vue.use(Vuetify)
 
@@ -12,5 +13,8 @@ const app = new Vue({
 
     router,
 
-    components: { App }
+    components: { 
+        App,
+        Login
+    }
 });
