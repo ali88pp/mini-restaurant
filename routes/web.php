@@ -1,6 +1,6 @@
 <?php
 
-Route::view('/', 'welcome');
+Route::view('/', 'app');
 
 Route::get('/floors', 'FloorController@index')->name('floor');
 Route::get('/floor/create', 'FloorController@create')->name('floor.create');
