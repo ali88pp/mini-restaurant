@@ -1,6 +1,12 @@
 <?php
 
 Route::view('/', 'app');
+// Auth::routes();
+// Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('login', 'Auth\LoginController@index')->name('login');
+
+
 
 Route::get('/floors', 'FloorController@index')->name('floor');
 Route::get('/floor/create', 'FloorController@create')->name('floor.create');

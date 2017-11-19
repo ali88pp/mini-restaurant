@@ -1,7 +1,7 @@
-@extends('_layout.master')
+@extends('_layouts.master')
 
 @section('content')
-<div id="el">
+<div id="application">
     <app></app>
 </div>
 @stop

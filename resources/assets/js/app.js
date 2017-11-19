@@ -1,4 +1,4 @@
-require('./bootstrap');
+// require('./bootstrap');
 
 import Vue from 'vue'
 import Vuetify from 'vuetify'
@@ -8,7 +8,7 @@ import router from './router'
 Vue.use(Vuetify)
 
 const app = new Vue({
-    el: '#el',
+    el: '#application',
 
     router,
 
