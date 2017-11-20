@@ -87,6 +87,8 @@
                 throw 'Validation failed';
             }
 
+            axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
             axios.post('/login', this.model)
             .then( response => {
                 console.log(response)

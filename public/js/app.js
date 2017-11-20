@@ -5012,6 +5012,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 throw 'Validation failed';
             }
 
+            __WEBPACK_IMPORTED_MODULE_2_axios___default.a.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
             __WEBPACK_IMPORTED_MODULE_2_axios___default.a.post('/login', this.model).then(function (response) {
                 console.log(response);
             });
