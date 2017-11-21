@@ -37,7 +37,7 @@
             <v-list-tile
               v-for="(child, i) in item.children"
               :key="i"
-              @click=""
+              @click="$router.push(child.link)"
             >
               <v-list-tile-action v-if="child.icon">
                 <v-icon>{{ child.icon }}</v-icon>
@@ -49,7 +49,7 @@
               </v-list-tile-content>
             </v-list-tile>
           </v-list-group>
-          <v-list-tile v-else @click="">
+          <v-list-tile v-else @click="$router.push(item.link)">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
@@ -189,7 +189,8 @@ export default {
     dialog: false,
     drawer: null,
     items: [
-      { icon: "apps", text: "Dashboard" },
+      { icon: "apps", text: "Dashboard", link: '/' },
+      { icon: "person", text: "User", link: 'user'},
       // { icon: "history", text: "Frequently contacted" },
       // { icon: "content_copy", text: "Duplicates" },
       // {

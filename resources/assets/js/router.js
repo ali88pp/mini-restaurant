@@ -5,8 +5,10 @@ Vue.use(VueRouter)
 
 const routes = [
     { path: '/', component: () => import('./pages/Dashboard.vue') },
+    { path: '/user', component: () => import('./pages/User.vue') },
 ]
 const router = new VueRouter({
+    mode: 'history',
     routes
 })
 

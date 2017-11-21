@@ -921,9 +921,12 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]);
 
 var routes = [{ path: '/', component: function component() {
-        return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 70));
+        return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 70));
+    } }, { path: '/user', component: function component() {
+        return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 78));
     } }];
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
+    mode: 'history',
     routes: routes
 });
 
@@ -1176,7 +1179,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       dialog: false,
       drawer: null,
-      items: [{ icon: "apps", text: "Dashboard" }]
+      items: [{ icon: "apps", text: "Dashboard", link: '/' }, { icon: "person", text: "User", link: 'user' }]
     };
   },
 
@@ -2195,7 +2198,14 @@ var render = function() {
                             _vm._l(item.children, function(child, i) {
                               return _c(
                                 "v-list-tile",
-                                { key: i, on: { click: function($event) {} } },
+                                {
+                                  key: i,
+                                  on: {
+                                    click: function($event) {
+                                      _vm.$router.push(child.link)
+                                    }
+                                  }
+                                },
                                 [
                                   child.icon
                                     ? _c(
@@ -2231,7 +2241,13 @@ var render = function() {
                         )
                       : _c(
                           "v-list-tile",
-                          { on: { click: function($event) {} } },
+                          {
+                            on: {
+                              click: function($event) {
+                                _vm.$router.push(item.link)
+                              }
+                            }
+                          },
                           [
                             _c(
                               "v-list-tile-action",
