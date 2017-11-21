@@ -42,7 +42,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return response()->json([ 'msg' => trans('auth.success') ], 200);
+        return response()->json([ 'message' => trans('auth.success') ], 202);
     }
 
     /**
@@ -53,5 +53,25 @@ class LoginController extends Controller
     public function index()
     {
         return view('auth.login');
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        if($request->ajax())
+        {
+            return response()->json([ 'message' => trans('auth.logout') ], 202);
+        }
+
+        return redirect('/');
     }
 }

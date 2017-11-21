@@ -6,12 +6,19 @@
                         <v-card>
                             <v-card-title class="blue darken-3 white--text"><h3>Mini Restaurant</h3></v-card-title>                            
                             <v-card-text>
+                                <v-alert :color="alert_status" 
+                                        :icon="icon"  
+                                        :value="alert_status !== null" 
+                                        transition="slide-y-transition">
+                                    {{ message }}
+                                </v-alert>
                                 <form>
                                     <v-text-field
                                         label="Username"
                                         v-model="model.username"
                                         :error-messages="usernameErrors"
                                         required
+                                        @keypress.enter="login()"
                                     ></v-text-field>
                                     <v-text-field
                                         label="Password"
@@ -19,13 +26,14 @@
                                         type="password"
                                         :error-messages="passwordErrors"
                                         required
+                                        @keypress.enter="login()"
                                     ></v-text-field>
                                     <v-checkbox
                                         label="Remember me"
                                         v-model="model.remember"
                                     ></v-checkbox>
                                     <v-layout justify-end>
-                                        <v-btn @click="login" primary>Login</v-btn>
+                                        <v-btn @click="login()" color="primary">Login</v-btn>
                                     </v-layout>
                                 </form>
                             </v-card-text>
@@ -51,13 +59,15 @@
     },
 
     data () {
-      return {
-          model: {
-            username: '',
-            password: '',
-            remember: false
-          }
-      }
+        return {
+            model: {
+                username: '',
+                password: '',
+                remember: false
+            },
+            alert_status: null,
+            message: ''
+        }
     },
 
     computed: {
@@ -78,6 +88,16 @@
 
             return errors
         },
+
+        icon() {
+            if(this.alert_status === 'success')
+                return 'check_circle'
+
+            if(this.alert_status === 'error')
+                return 'warning'
+            
+            return ''
+        }
     },
 
     methods: {
@@ -91,7 +111,14 @@
 
             axios.post('/login', this.model)
             .then( response => {
-                console.log(response)
+                this.message = response.data.message
+                this.alert_status = 'success'
+
+                window.location = '/'
+            })
+            .catch( error => {
+                this.message = error.response.data.errors.username[0]
+                this.alert_status = 'error'
             })
         }
     },

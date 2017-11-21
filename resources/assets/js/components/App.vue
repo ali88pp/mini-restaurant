@@ -81,20 +81,16 @@
         style="max-width: 500px; min-width: 128px"
       ></v-text-field>
       <div class="d-flex align-center" style="margin-left: auto">
-        <v-btn icon>
-          <v-icon>apps</v-icon>
-        </v-btn>
-        <v-btn icon>
-          <v-icon>notifications</v-icon>
-        </v-btn>
-        <v-btn icon large>
+        <!-- <v-btn icon><v-icon>notifications</v-icon></v-btn> -->
+        <!-- <v-btn icon large>
           <v-avatar size="32px" tile>
-            <img
-              src="https://vuetifyjs.com/static/doc-images/logo.svg"
-              alt="Vuetify"
-            >
+            <img src="https://vuetifyjs.com/static/doc-images/logo.svg" alt="Vuetify">
           </v-avatar>
-        </v-btn>
+        </v-btn> -->
+        <v-tooltip bottom>
+          <v-btn icon slot="activator" @click="logout()"><v-icon>fa-sign-out</v-icon></v-btn>
+          <span>Logout</span>
+        </v-tooltip>
       </div>
     </v-toolbar>
     <v-content>
@@ -182,45 +178,60 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      dialog: false,
-      drawer: null,
-      items: [
-        { icon: 'contacts', text: 'Contacts' },
-        { icon: 'history', text: 'Frequently contacted' },
-        { icon: 'content_copy', text: 'Duplicates' },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'Labels',
-          model: true,
-          children: [
-            { icon: 'add', text: 'Create label' }
-          ]
-        },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'More',
-          model: false,
-          children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' }
-          ]
-        },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Go to the old version' }
-      ]
-    }),
-    props: {
-      source: String
+import axios from 'axios'
+
+export default {
+  name: 'App',
+
+  data: () => ({
+    dialog: false,
+    drawer: null,
+    items: [
+      { icon: "contacts", text: "Contacts" },
+      { icon: "history", text: "Frequently contacted" },
+      { icon: "content_copy", text: "Duplicates" },
+      {
+        icon: "keyboard_arrow_up",
+        "icon-alt": "keyboard_arrow_down",
+        text: "Labels",
+        model: true,
+        children: [{ icon: "add", text: "Create label" }]
+      },
+      {
+        icon: "keyboard_arrow_up",
+        "icon-alt": "keyboard_arrow_down",
+        text: "More",
+        model: false,
+        children: [
+          { text: "Import" },
+          { text: "Export" },
+          { text: "Print" },
+          { text: "Undo changes" },
+          { text: "Other contacts" }
+        ]
+      },
+      { icon: "settings", text: "Settings" },
+      { icon: "chat_bubble", text: "Send feedback" },
+      { icon: "help", text: "Help" },
+      { icon: "phonelink", text: "App downloads" },
+      { icon: "keyboard", text: "Go to the old version" }
+    ]
+  }),
+
+  props: {
+    source: String
+  },
+
+  methods: {
+    logout() {
+      axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+      axios.post('/logout')
+      .then( response => {
+
+          window.location = '/'
+      })
     }
   }
+};
 </script>

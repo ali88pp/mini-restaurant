@@ -1,11 +1,9 @@
 <?php
 
-Route::view('/', 'app');
-// Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
-
+Route::view('/', 'app')->middleware('auth');
 Route::get('login', 'Auth\LoginController@index')->name('login');
 Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout');
 
 
 
