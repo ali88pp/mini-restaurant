@@ -121,6 +121,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -252,171 +254,184 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-card",
+    "v-flex",
     [
       _c(
-        "v-card-title",
+        "v-card",
+        { attrs: { xs12: "" } },
         [
-          _vm._v("\n    Nutrition\n    "),
-          _c("v-spacer"),
+          _c(
+            "v-card-title",
+            [
+              _vm._v("\n      Nutrition\n      "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  "append-icon": "search",
+                  label: "Search",
+                  "single-line": "",
+                  "hide-details": ""
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("v-text-field", {
+          _c("v-data-table", {
             attrs: {
-              "append-icon": "search",
-              label: "Search",
-              "single-line": "",
-              "hide-details": ""
+              headers: _vm.headers,
+              items: _vm.items,
+              search: _vm.search
             },
-            model: {
-              value: _vm.search,
-              callback: function($$v) {
-                _vm.search = $$v
+            scopedSlots: _vm._u([
+              {
+                key: "items",
+                fn: function(props) {
+                  return [
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "v-edit-dialog",
+                          { attrs: { lazy: "" } },
+                          [
+                            _vm._v(
+                              " " + _vm._s(props.item.name) + "\n            "
+                            ),
+                            _c("v-text-field", {
+                              attrs: {
+                                slot: "input",
+                                label: "Edit",
+                                "single-line": "",
+                                counter: "",
+                                rules: [_vm.max25chars]
+                              },
+                              slot: "input",
+                              model: {
+                                value: props.item.name,
+                                callback: function($$v) {
+                                  _vm.$set(props.item, "name", $$v)
+                                },
+                                expression: "props.item.name"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-xs-right" }, [
+                      _vm._v(_vm._s(props.item.calories))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-xs-right" }, [
+                      _vm._v(_vm._s(props.item.fat))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-xs-right" }, [
+                      _vm._v(_vm._s(props.item.carbs))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-xs-right" }, [
+                      _vm._v(_vm._s(props.item.protein))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-xs-right" }, [
+                      _vm._v(_vm._s(props.item.sodium))
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-xs-right" }, [
+                      _vm._v(_vm._s(props.item.calcium))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      { staticClass: "text-xs-right" },
+                      [
+                        _c(
+                          "v-edit-dialog",
+                          {
+                            attrs: { large: "", lazy: "" },
+                            on: {
+                              open: function($event) {
+                                _vm.tmp = props.item.iron
+                              },
+                              save: function($event) {
+                                props.item.iron = _vm.tmp || props.item.iron
+                              }
+                            }
+                          },
+                          [
+                            _c("div", [_vm._v(_vm._s(props.item.iron))]),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "mt-3 title",
+                                attrs: { slot: "input" },
+                                slot: "input"
+                              },
+                              [_vm._v("Update Iron")]
+                            ),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              attrs: {
+                                slot: "input",
+                                label: "Edit",
+                                "single-line": "",
+                                counter: "",
+                                autofocus: "",
+                                rules: [_vm.max25chars]
+                              },
+                              slot: "input",
+                              model: {
+                                value: _vm.tmp,
+                                callback: function($$v) {
+                                  _vm.tmp = $$v
+                                },
+                                expression: "tmp"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ]
+                }
               },
-              expression: "search"
-            }
+              {
+                key: "pageText",
+                fn: function(ref) {
+                  var pageStart = ref.pageStart
+                  var pageStop = ref.pageStop
+                  return [
+                    _vm._v(
+                      "\n        From " +
+                        _vm._s(pageStart) +
+                        " to " +
+                        _vm._s(pageStop) +
+                        "\n      "
+                    )
+                  ]
+                }
+              }
+            ])
           })
         ],
         1
-      ),
-      _vm._v(" "),
-      _c("v-data-table", {
-        attrs: { headers: _vm.headers, items: _vm.items, search: _vm.search },
-        scopedSlots: _vm._u([
-          {
-            key: "items",
-            fn: function(props) {
-              return [
-                _c(
-                  "td",
-                  [
-                    _c(
-                      "v-edit-dialog",
-                      { attrs: { lazy: "" } },
-                      [
-                        _vm._v(" " + _vm._s(props.item.name) + "\n          "),
-                        _c("v-text-field", {
-                          attrs: {
-                            slot: "input",
-                            label: "Edit",
-                            "single-line": "",
-                            counter: "",
-                            rules: [_vm.max25chars]
-                          },
-                          slot: "input",
-                          model: {
-                            value: props.item.name,
-                            callback: function($$v) {
-                              _vm.$set(props.item, "name", $$v)
-                            },
-                            expression: "props.item.name"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-xs-right" }, [
-                  _vm._v(_vm._s(props.item.calories))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-xs-right" }, [
-                  _vm._v(_vm._s(props.item.fat))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-xs-right" }, [
-                  _vm._v(_vm._s(props.item.carbs))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-xs-right" }, [
-                  _vm._v(_vm._s(props.item.protein))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-xs-right" }, [
-                  _vm._v(_vm._s(props.item.sodium))
-                ]),
-                _vm._v(" "),
-                _c("td", { staticClass: "text-xs-right" }, [
-                  _vm._v(_vm._s(props.item.calcium))
-                ]),
-                _vm._v(" "),
-                _c(
-                  "td",
-                  { staticClass: "text-xs-right" },
-                  [
-                    _c(
-                      "v-edit-dialog",
-                      {
-                        attrs: { large: "", lazy: "" },
-                        on: {
-                          open: function($event) {
-                            _vm.tmp = props.item.iron
-                          },
-                          save: function($event) {
-                            props.item.iron = _vm.tmp || props.item.iron
-                          }
-                        }
-                      },
-                      [
-                        _c("div", [_vm._v(_vm._s(props.item.iron))]),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "mt-3 title",
-                            attrs: { slot: "input" },
-                            slot: "input"
-                          },
-                          [_vm._v("Update Iron")]
-                        ),
-                        _vm._v(" "),
-                        _c("v-text-field", {
-                          attrs: {
-                            slot: "input",
-                            label: "Edit",
-                            "single-line": "",
-                            counter: "",
-                            autofocus: "",
-                            rules: [_vm.max25chars]
-                          },
-                          slot: "input",
-                          model: {
-                            value: _vm.tmp,
-                            callback: function($$v) {
-                              _vm.tmp = $$v
-                            },
-                            expression: "tmp"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]
-            }
-          },
-          {
-            key: "pageText",
-            fn: function(ref) {
-              var pageStart = ref.pageStart
-              var pageStop = ref.pageStop
-              return [
-                _vm._v(
-                  "\n      From " +
-                    _vm._s(pageStart) +
-                    " to " +
-                    _vm._s(pageStop) +
-                    "\n    "
-                )
-              ]
-            }
-          }
-        ])
-      })
+      )
     ],
     1
   )

@@ -1164,6 +1164,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -1174,19 +1176,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       dialog: false,
       drawer: null,
-      items: [{ icon: "contacts", text: "Contacts" }, { icon: "history", text: "Frequently contacted" }, { icon: "content_copy", text: "Duplicates" }, {
-        icon: "keyboard_arrow_up",
-        "icon-alt": "keyboard_arrow_down",
-        text: "Labels",
-        model: true,
-        children: [{ icon: "add", text: "Create label" }]
-      }, {
-        icon: "keyboard_arrow_up",
-        "icon-alt": "keyboard_arrow_down",
-        text: "More",
-        model: false,
-        children: [{ text: "Import" }, { text: "Export" }, { text: "Print" }, { text: "Undo changes" }, { text: "Other contacts" }]
-      }, { icon: "settings", text: "Settings" }, { icon: "chat_bubble", text: "Send feedback" }, { icon: "help", text: "Help" }, { icon: "phonelink", text: "App downloads" }, { icon: "keyboard", text: "Go to the old version" }]
+      items: [{ icon: "apps", text: "Dashboard" }]
     };
   },
 
@@ -2305,13 +2295,14 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("span", { staticClass: "hidden-xs-only" }, [
-                _vm._v("Google Contacts")
+                _vm._v("Mini Restaurant")
               ])
             ],
             1
           ),
           _vm._v(" "),
           _c("v-text-field", {
+            staticClass: "hidden-sm-and-down",
             staticStyle: { "max-width": "500px", "min-width": "128px" },
             attrs: {
               light: "",
@@ -2328,6 +2319,22 @@ var render = function() {
               staticStyle: { "margin-left": "auto" }
             },
             [
+              _c(
+                "v-btn",
+                { attrs: { icon: "", large: "" } },
+                [
+                  _c("v-avatar", { attrs: { size: "32px", tile: "" } }, [
+                    _c("img", {
+                      attrs: {
+                        src: "https://vuetifyjs.com/static/doc-images/logo.svg",
+                        alt: "Vuetify"
+                      }
+                    })
+                  ])
+                ],
+                1
+              ),
+              _vm._v(" "),
               _c(
                 "v-tooltip",
                 { attrs: { bottom: "" } },
@@ -2363,11 +2370,11 @@ var render = function() {
         [
           _c(
             "v-container",
-            { attrs: { fluid: "", "fill-height": "" } },
+            { attrs: { fluid: "" } },
             [
               _c(
                 "v-layout",
-                { attrs: { "justify-center": "", "align-center": "" } },
+                { attrs: { row: "", wrap: "" } },
                 [_c("router-view")],
                 1
               )

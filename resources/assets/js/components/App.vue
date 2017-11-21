@@ -71,7 +71,7 @@
     >
       <v-toolbar-title :style="$vuetify.breakpoint.smAndUp ? 'width: 300px; min-width: 250px' : 'min-width: 72px'" class="ml-0 pl-3">
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <span class="hidden-xs-only">Google Contacts</span>
+        <span class="hidden-xs-only">Mini Restaurant</span>
       </v-toolbar-title>
       <v-text-field
         light
@@ -79,14 +79,15 @@
         prepend-icon="search"
         placeholder="Search"
         style="max-width: 500px; min-width: 128px"
+        class="hidden-sm-and-down"       
       ></v-text-field>
       <div class="d-flex align-center" style="margin-left: auto">
         <!-- <v-btn icon><v-icon>notifications</v-icon></v-btn> -->
-        <!-- <v-btn icon large>
+        <v-btn icon large>
           <v-avatar size="32px" tile>
             <img src="https://vuetifyjs.com/static/doc-images/logo.svg" alt="Vuetify">
           </v-avatar>
-        </v-btn> -->
+        </v-btn>
         <v-tooltip bottom>
           <v-btn icon slot="activator" @click="logout()"><v-icon>fa-sign-out</v-icon></v-btn>
           <span>Logout</span>
@@ -94,8 +95,9 @@
       </div>
     </v-toolbar>
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout justify-center align-center>
+      <!-- <v-container fluid fill-height>-->
+      <v-container fluid>
+        <v-layout row wrap>
             <router-view></router-view>
         </v-layout>
       </v-container>
@@ -187,34 +189,16 @@ export default {
     dialog: false,
     drawer: null,
     items: [
-      { icon: "contacts", text: "Contacts" },
-      { icon: "history", text: "Frequently contacted" },
-      { icon: "content_copy", text: "Duplicates" },
-      {
-        icon: "keyboard_arrow_up",
-        "icon-alt": "keyboard_arrow_down",
-        text: "Labels",
-        model: true,
-        children: [{ icon: "add", text: "Create label" }]
-      },
-      {
-        icon: "keyboard_arrow_up",
-        "icon-alt": "keyboard_arrow_down",
-        text: "More",
-        model: false,
-        children: [
-          { text: "Import" },
-          { text: "Export" },
-          { text: "Print" },
-          { text: "Undo changes" },
-          { text: "Other contacts" }
-        ]
-      },
-      { icon: "settings", text: "Settings" },
-      { icon: "chat_bubble", text: "Send feedback" },
-      { icon: "help", text: "Help" },
-      { icon: "phonelink", text: "App downloads" },
-      { icon: "keyboard", text: "Go to the old version" }
+      { icon: "apps", text: "Dashboard" },
+      // { icon: "history", text: "Frequently contacted" },
+      // { icon: "content_copy", text: "Duplicates" },
+      // {
+      //   icon: "keyboard_arrow_up",
+      //   "icon-alt": "keyboard_arrow_down",
+      //   text: "Labels",
+      //   model: false,
+      //   children: [{ icon: "add", text: "Create label" }]
+      // }
     ]
   }),
 
