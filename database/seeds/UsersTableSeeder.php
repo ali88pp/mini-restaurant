@@ -28,6 +28,9 @@ class UsersTableSeeder extends Seeder
         $user = factory(User::class)->create([ 'username' => 'admin' ]);
         $user->assignRole('administrator');
 
+
+        factory(User::class, 10)->create();
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }

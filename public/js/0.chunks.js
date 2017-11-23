@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 71:
+/***/ 74:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(4)
 /* script */
-var __vue_script__ = __webpack_require__(74)
+var __vue_script__ = __webpack_require__(77)
 /* template */
-var __vue_template__ = __webpack_require__(75)
+var __vue_template__ = __webpack_require__(78)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -49,30 +49,139 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 74:
+/***/ 77:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(9);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'User'
+    name: 'User',
+
+    data: function data() {
+        return {
+            pagination: {},
+            search: '',
+            headers: [{ text: 'Username', value: 'username', align: 'left' }, { text: 'Email', value: 'email', align: 'left' }]
+            // items: []
+        };
+    },
+
+
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
+        items: function items(state) {
+            return state.user.items;
+        }
+    })),
+
+    mounted: function mounted() {
+        this.fetchData();
+    },
+
+
+    methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
+        fetchData: 'user/fetchData'
+    }))
 });
 
 /***/ }),
 
-/***/ 75:
+/***/ 78:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("User")])
+  return _c(
+    "v-flex",
+    [
+      _c(
+        "v-card",
+        { attrs: { xs12: "" } },
+        [
+          _c(
+            "v-card-title",
+            [
+              _vm._v("\n            User\n            "),
+              _c("v-spacer"),
+              _vm._v(" "),
+              _c("v-text-field", {
+                attrs: {
+                  "append-icon": "search",
+                  label: "Search",
+                  "single-line": "",
+                  "hide-details": ""
+                },
+                model: {
+                  value: _vm.search,
+                  callback: function($$v) {
+                    _vm.search = $$v
+                  },
+                  expression: "search"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("v-data-table", {
+            attrs: {
+              headers: _vm.headers,
+              items: _vm.items,
+              search: _vm.search
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "items",
+                fn: function(props) {
+                  return _c("tr", {}, [
+                    _c("td", [_vm._v(_vm._s(props.item.username))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(props.item.email))])
+                  ])
+                }
+              }
+            ])
+          })
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
