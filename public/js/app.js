@@ -1,4 +1,4 @@
-webpackJsonp([1],[
+webpackJsonp([2],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -921,9 +921,9 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]);
 
 var routes = [{ path: '/', component: function component() {
-        return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 70));
+        return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 70));
     } }, { path: '/user', component: function component() {
-        return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 78));
+        return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 71));
     } }];
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
     mode: 'history',
