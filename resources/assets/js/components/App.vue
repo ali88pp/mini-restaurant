@@ -180,7 +180,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import http from './../http'
 
 export default {
   name: 'App',
@@ -209,9 +209,7 @@ export default {
 
   methods: {
     logout() {
-      axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-      axios.post('/logout')
+      http.post('/logout')
       .then( response => {
 
           window.location = '/'

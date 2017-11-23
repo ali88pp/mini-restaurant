@@ -47,7 +47,7 @@
 <script>
   import { validationMixin } from 'vuelidate'
   import { required, maxLength } from 'vuelidate/lib/validators'
-  import axios from 'axios'
+  import http from './../http'
 
   export default {
     mixins: [validationMixin],
@@ -107,9 +107,7 @@
                 throw 'Validation failed';
             }
 
-            axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-            axios.post('/login', this.model)
+            http.post('/login', this.model)
             .then( response => {
                 this.message = response.data.message
                 this.alert_status = 'success'
