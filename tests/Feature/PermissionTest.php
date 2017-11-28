@@ -63,6 +63,8 @@ class PermissionTest extends TestCase
     /** @test */
     public function administrator_can_view_permissions()
     {
+        // $this->withoutExceptionHandling();
+
         Permission::create(['name' => 'create permission']);
         Permission::create(['name' => 'update permission']);
         Permission::create(['name' => 'destroy permission']);
