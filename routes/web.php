@@ -1,10 +1,6 @@
 <?php
 
 Route::view('/', 'app')->middleware('auth');
-// Route::get('/user', function() {
-//     return redirect()->to('/');
-// });
-
 
 Route::get('login', 'Auth\LoginController@index')->name('login');
 Route::post('login', 'Auth\LoginController@login');
