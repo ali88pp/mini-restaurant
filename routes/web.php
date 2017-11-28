@@ -6,9 +6,13 @@ Route::get('login', 'Auth\LoginController@index')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 
-Route::post('permission', 'PermissionController@index')->name('permisions');
+Route::post('permission', 'PermissionController@index')->name('permision');
 Route::post('permission/create', 'PermissionController@store')->name('permision.create');
 Route::put('permission/update/{permission}', 'PermissionController@update')->name('permision.update');
+
+Route::post('role', 'RoleController@index')->name('role');
+Route::post('role/create', 'RoleController@store')->name('role.create');
+Route::put('role/update/{role}', 'RoleController@update')->name('role.update');
 
 Route::post('user', function() {
     return App\User::with('roles')->paginate(3);
