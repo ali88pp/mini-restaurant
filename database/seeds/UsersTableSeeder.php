@@ -26,9 +26,19 @@ class UsersTableSeeder extends Seeder
         User::truncate();
 
 
-        Role::create(['name' => 'administrator']);                
+        Permission::create(['name' => 'create permission']);
+        Permission::create(['name' => 'update permission']);
+        Permission::create(['name' => 'destroy permission']);
+        Permission::create(['name' => 'view permission']);
+        Permission::create(['name' => 'create role']);
+        Permission::create(['name' => 'update role']);
+        Permission::create(['name' => 'destroy role']);
+        Permission::create(['name' => 'view role']);
+
+
+        Role::create(['name' => 'super-admin']);                
         $admin = factory(User::class)->create([ 'username' => 'admin' ]);
-        $admin->assignRole('administrator');
+        $admin->assignRole('super-admin');
 
         Role::create(['name' => 'cashier']);  
         Role::create(['name' => 'waiter']);               

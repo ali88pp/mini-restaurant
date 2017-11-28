@@ -190,6 +190,7 @@ export default {
     drawer: null,
     items: [
       { icon: "apps", text: "Dashboard", link: '/' },
+      { icon: "lock", text: "Permission", link: 'permission'},
       { icon: "person", text: "User", link: 'user'},
       // { icon: "history", text: "Frequently contacted" },
       // { icon: "content_copy", text: "Duplicates" },

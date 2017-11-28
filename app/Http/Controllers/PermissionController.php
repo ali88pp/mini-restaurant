@@ -11,7 +11,7 @@ class PermissionController extends Controller
     {
         $this->authorize('view permission');        
 
-        return Permission::all();
+        return Permission::paginate();
     }
 
     public function store()

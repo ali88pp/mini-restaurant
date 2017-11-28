@@ -27,12 +27,11 @@
                     <td>{{ props.item.username }}</td>
                     <td>{{ props.item.email }}</td>
                     <td>{{ props.item.roles.map( role => role.name ).join(', ') }}</td>
+                    <td>{{ props.item.created_at }}</td>
+                    <td>{{ props.item.updated_at }}</td>
                     <td><v-btn flat color="primary">Edit</v-btn></td>
                 </tr>
             </v-data-table>
-            <div class="text-xs-center pt-2">
-                <v-pagination :length="length" v-model="pagination.page"></v-pagination>
-            </div>
         </v-card>
     </v-flex>
 </template>
@@ -50,6 +49,8 @@ export default {
                 { text: 'Username', value: 'username', align: 'left' },
                 { text: 'Email', value: 'email', align: 'left' },
                 { text: 'Roles', value: 'roles', align: 'left' },
+                { text: 'Created At', value: 'created_at', align: 'left' },
+                { text: 'Updated At', value: 'updated_at', align: 'left' },
             ],
             pagination: {
                 page: 1

@@ -10,7 +10,7 @@ Route::get('login', 'Auth\LoginController@index')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout');
 
-Route::post('permissions', 'PermissionController@index')->name('permisions');
+Route::post('permission', 'PermissionController@index')->name('permisions');
 Route::post('permission/create', 'PermissionController@store')->name('permision.create');
 Route::put('permission/update/{permission}', 'PermissionController@update')->name('permision.update');
 

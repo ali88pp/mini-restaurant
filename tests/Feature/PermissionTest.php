@@ -121,7 +121,7 @@ class PermissionTest extends TestCase
 
         $this->actingAs($user);
 
-        $this->postJson('permissions')
+        $this->postJson('permission')
             ->assertStatus(200);
     }
 
@@ -137,7 +137,7 @@ class PermissionTest extends TestCase
 
         $this->actingAs($user);
 
-        $this->postJson('permissions')
+        $this->postJson('permission')
             ->assertStatus(200);
     }
 
@@ -152,7 +152,7 @@ class PermissionTest extends TestCase
 
         $this->actingAs($user);
 
-        $this->postJson('permissions')
+        $this->postJson('permission')
             ->assertStatus(403);
     }
 }
