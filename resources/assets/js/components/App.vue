@@ -191,6 +191,7 @@ export default {
     items: [
       { icon: "apps", text: "Dashboard", link: '/' },
       { icon: "lock", text: "Permission", link: 'permission'},
+      { icon: "mdi-folder-lock", text: "Role", link: 'role'},
       { icon: "person", text: "User", link: 'user'},
       // { icon: "history", text: "Frequently contacted" },
       // { icon: "content_copy", text: "Duplicates" },

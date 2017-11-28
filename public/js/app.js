@@ -937,11 +937,13 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]);
 
 var routes = [{ path: '/', component: function component() {
-        return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 73));
+        return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 73));
     } }, { path: '/user', component: function component() {
-        return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 74));
+        return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 74));
     } }, { path: '/permission', component: function component() {
-        return __webpack_require__.e/* import() */(2).then(__webpack_require__.bind(null, 75));
+        return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 75));
+    } }, { path: '/role', component: function component() {
+        return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 89));
     } }];
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
     // mode: 'history',
@@ -960,6 +962,8 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_user__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_permission__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_role__ = __webpack_require__(88);
+
 
 
 
@@ -970,7 +974,8 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex
 var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
     modules: {
         user: __WEBPACK_IMPORTED_MODULE_2__modules_user__["a" /* default */],
-        permission: __WEBPACK_IMPORTED_MODULE_3__modules_permission__["a" /* default */]
+        permission: __WEBPACK_IMPORTED_MODULE_3__modules_permission__["a" /* default */],
+        role: __WEBPACK_IMPORTED_MODULE_4__modules_role__["a" /* default */]
     }
 });
 
@@ -2139,7 +2144,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       dialog: false,
       drawer: null,
-      items: [{ icon: "apps", text: "Dashboard", link: '/' }, { icon: "lock", text: "Permission", link: 'permission' }, { icon: "person", text: "User", link: 'user' }]
+      items: [{ icon: "apps", text: "Dashboard", link: '/' }, { icon: "lock", text: "Permission", link: 'permission' }, { icon: "mdi-folder-lock", text: "Role", link: 'role' }, { icon: "person", text: "User", link: 'user' }]
     };
   },
 
@@ -3609,6 +3614,48 @@ var actions = {
         var commit = _ref.commit;
 
         __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('permission').then(function (response) {
+            commit('RECEIVE_DATA', response.data);
+        });
+    }
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+    namespaced: true,
+    state: state,
+    getters: getters,
+    actions: actions,
+    mutations: mutations
+});
+
+/***/ }),
+/* 87 */,
+/* 88 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__http__ = __webpack_require__(3);
+
+
+var state = {
+    items: []
+};
+
+var getters = {};
+
+var mutations = {
+    RECEIVE_DATA: function RECEIVE_DATA(state, result) {
+        state.items.splice(0, state.items.length);
+        result.data.forEach(function (u) {
+            state.items.push(u);
+        });
+    }
+};
+
+var actions = {
+    fetchData: function fetchData(_ref, params) {
+        var commit = _ref.commit;
+
+        __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].post('role').then(function (response) {
             commit('RECEIVE_DATA', response.data);
         });
     }

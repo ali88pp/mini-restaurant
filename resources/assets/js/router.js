@@ -7,6 +7,7 @@ const routes = [
     { path: '/', component: () => import('./pages/Dashboard.vue') },
     { path: '/user', component: () => import('./pages/User.vue') },
     { path: '/permission', component: () => import('./pages/Permission.vue') },
+    { path: '/role', component: () => import('./pages/Role.vue') },
 ]
 const router = new VueRouter({
     // mode: 'history',
