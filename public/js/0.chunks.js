@@ -4,7 +4,7 @@ webpackJsonp([0],{
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(77)
 /* template */
@@ -54,9 +54,21 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(6);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -92,19 +104,27 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     data: function data() {
         return {
-            pagination: {},
             search: '',
-            headers: [{ text: 'Username', value: 'username', align: 'left' }, { text: 'Email', value: 'email', align: 'left' }]
-            // items: []
+            headers: [{ text: 'Username', value: 'username', align: 'left' }, { text: 'Email', value: 'email', align: 'left' }, { text: 'Roles', value: 'roles', align: 'left' }],
+            pagination: {
+                page: 1
+            }
         };
     },
 
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
-        items: function items(state) {
-            return state.user.items;
+    computed: {
+        // ...mapState({
+        //     items: state => state.user.items,
+        // }),
+
+        items: function items() {
+            return this.$store.state.user.data !== null ? this.$store.state.user.data.data : [];
+        },
+        length: function length() {
+            return this.$store.state.user.data !== null ? this.$store.state.user.data.last_page : 0;
         }
-    })),
+    },
 
     mounted: function mounted() {
         this.fetchData();
@@ -132,27 +152,39 @@ var render = function() {
         "v-card",
         { attrs: { xs12: "" } },
         [
+          _c("v-card-title", [
+            _vm._v("\n            User             \n        ")
+          ]),
+          _vm._v(" "),
           _c(
-            "v-card-title",
+            "v-card-text",
             [
-              _vm._v("\n            User\n            "),
-              _c("v-spacer"),
-              _vm._v(" "),
-              _c("v-text-field", {
-                attrs: {
-                  "append-icon": "search",
-                  label: "Search",
-                  "single-line": "",
-                  "hide-details": ""
-                },
-                model: {
-                  value: _vm.search,
-                  callback: function($$v) {
-                    _vm.search = $$v
-                  },
-                  expression: "search"
-                }
-              })
+              _c(
+                "v-layout",
+                { attrs: { row: "", wrap: "" } },
+                [
+                  _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("New")]),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c("v-text-field", {
+                    attrs: {
+                      "append-icon": "search",
+                      label: "Search",
+                      "single-line": "",
+                      "hide-details": ""
+                    },
+                    model: {
+                      value: _vm.search,
+                      callback: function($$v) {
+                        _vm.search = $$v
+                      },
+                      expression: "search"
+                    }
+                  })
+                ],
+                1
+              )
             ],
             1
           ),
@@ -161,7 +193,14 @@ var render = function() {
             attrs: {
               headers: _vm.headers,
               items: _vm.items,
-              search: _vm.search
+              search: _vm.search,
+              pagination: _vm.pagination,
+              "hide-actions": ""
+            },
+            on: {
+              "update:pagination": function($event) {
+                _vm.pagination = $event
+              }
             },
             scopedSlots: _vm._u([
               {
@@ -170,12 +209,52 @@ var render = function() {
                   return _c("tr", {}, [
                     _c("td", [_vm._v(_vm._s(props.item.username))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.email))])
+                    _c("td", [_vm._v(_vm._s(props.item.email))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          props.item.roles
+                            .map(function(role) {
+                              return role.name
+                            })
+                            .join(", ")
+                        )
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("v-btn", { attrs: { flat: "", color: "primary" } }, [
+                          _vm._v("Edit")
+                        ])
+                      ],
+                      1
+                    )
                   ])
                 }
               }
             ])
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "text-xs-center pt-2" },
+            [
+              _c("v-pagination", {
+                attrs: { length: _vm.length },
+                model: {
+                  value: _vm.pagination.page,
+                  callback: function($$v) {
+                    _vm.$set(_vm.pagination, "page", $$v)
+                  },
+                  expression: "pagination.page"
+                }
+              })
+            ],
+            1
+          )
         ],
         1
       )

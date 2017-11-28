@@ -14,6 +14,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        app()['cache']->forget('spatie.permission.cache');
+
         \DB::statement('SET FOREIGN_KEY_CHECKS=0');     
            
         \DB::table('role_has_permissions')->truncate();
@@ -25,8 +27,14 @@ class UsersTableSeeder extends Seeder
 
 
         Role::create(['name' => 'administrator']);                
-        $user = factory(User::class)->create([ 'username' => 'admin' ]);
-        $user->assignRole('administrator');
+        $admin = factory(User::class)->create([ 'username' => 'admin' ]);
+        $admin->assignRole('administrator');
+
+        Role::create(['name' => 'cashier']);  
+        Role::create(['name' => 'waiter']);               
+        $user = factory(User::class)->create([ 'username' => 'ad1' ]);
+        $user->assignRole('cashier');
+        $user->assignRole('waiter');
 
 
         factory(User::class, 10)->create();

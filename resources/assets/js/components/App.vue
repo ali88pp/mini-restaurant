@@ -102,7 +102,7 @@
         </v-layout>
       </v-container>
     </v-content>
-    <v-btn
+    <!-- <v-btn
       fab
       bottom
       right
@@ -112,7 +112,7 @@
       @click.stop="dialog = !dialog"
     >
       <v-icon>add</v-icon>
-    </v-btn>
+    </v-btn> -->
     <v-dialog v-model="dialog" width="800px">
       <v-card>
         <v-card-title
