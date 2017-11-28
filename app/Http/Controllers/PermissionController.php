@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Auth\Access\Gate;
 
 class PermissionController extends Controller
 {
@@ -22,5 +21,12 @@ class PermissionController extends Controller
         Permission::create(request()->only(['name']));
 
         return response()->json([], 201);
+    }
+
+    public function update(Permission $permission)
+    {
+        $this->authorize('update permission');
+
+        $permission->update(request()->only('name'));
     }
 }

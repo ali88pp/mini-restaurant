@@ -12,6 +12,7 @@ Route::post('logout', 'Auth\LoginController@logout');
 
 Route::post('permissions', 'PermissionController@index')->name('permisions');
 Route::post('permission/create', 'PermissionController@store')->name('permision.create');
+Route::put('permission/update/{permission}', 'PermissionController@update')->name('permision.update');
 
 Route::post('user', function() {
     return App\User::with('roles')->paginate(3);

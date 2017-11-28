@@ -61,6 +61,54 @@ class PermissionTest extends TestCase
     }
 
     /** @test */
+    public function administrator_can_update_permissions()
+    {
+        $permission = Permission::create(['name' => 'create permission wrong']);
+
+        $this->assertDatabaseHas('permissions', [ 'id' => $permission->id, 'name' => 'create permission wrong' ]);
+
+        $user = $this->createSuperAdministrator();
+
+        $this->actingAs($user);
+
+        $this->putJson('permission/update/' . $permission->id, ['name' => 'create permission'])
+            ->assertStatus(200);
+        
+        $this->assertDatabaseHas('permissions', [ 'id' => $permission->id, 'name' => 'create permission' ]);
+    }
+
+    /** @test */
+    public function authorized_can_update_permissions()
+    {
+        $permission = Permission::create(['name' => 'test permission wrong']);
+
+        $this->assertDatabaseHas('permissions', [ 'id' => $permission->id, 'name' => 'test permission wrong' ]);
+
+        Permission::create(['name' => 'update permission']);
+        $user = factory(User::class)->create(['username' => 'authorized_user']);
+        $user->givePermissionTo('update permission');
+
+        $this->actingAs($user);
+
+        $this->putJson('permission/update/' . $permission->id, ['name' => 'test permission'])
+            ->assertStatus(200);
+        
+        $this->assertDatabaseHas('permissions', [ 'id' => $permission->id, 'name' => 'test permission' ]);
+    }
+
+    /** @test */
+    public function unauthorized_can_update_permissions()
+    {
+        $permission = Permission::create(['name' => 'test permission wrong']);
+        $user = factory(User::class)->create(['username' => 'unauthorized_user']);
+
+        $this->actingAs($user);
+
+        $this->putJson('permission/update/' . $permission->id, ['name' => 'test permission'])
+            ->assertStatus(403);
+    }
+
+    /** @test */
     public function administrator_can_view_permissions()
     {
         // $this->withoutExceptionHandling();
