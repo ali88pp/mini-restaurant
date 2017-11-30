@@ -25,7 +25,7 @@ class RoleController extends Controller
 
     public function update(Role $role)
     {
-        $this->authorize('update role');
+        $this->authorize('edit role');
 
         $role->update(request()->only(['name']));
     }

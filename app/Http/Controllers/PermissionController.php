@@ -25,7 +25,7 @@ class PermissionController extends Controller
 
     public function update(Permission $permission)
     {
-        $this->authorize('update permission');
+        $this->authorize('edit permission');
 
         $permission->update(request()->only('name'));
     }

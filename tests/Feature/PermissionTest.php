@@ -63,7 +63,7 @@ class PermissionTest extends TestCase
 
         $this->actingAs($user);
 
-        $this->putJson('permission/update/' . $permission->id, ['name' => 'create permission'])
+        $this->putJson('permission/edit/' . $permission->id, ['name' => 'create permission'])
             ->assertStatus(200);
         
         $this->assertDatabaseHas('permissions', [ 'id' => $permission->id, 'name' => 'create permission' ]);
@@ -76,13 +76,13 @@ class PermissionTest extends TestCase
 
         $this->assertDatabaseHas('permissions', [ 'id' => $permission->id, 'name' => 'test permission wrong' ]);
 
-        Permission::create(['name' => 'update permission']);
+        Permission::create(['name' => 'edit permission']);
         $user = factory(User::class)->create(['username' => 'authorized_user']);
-        $user->givePermissionTo('update permission');
+        $user->givePermissionTo('edit permission');
 
         $this->actingAs($user);
 
-        $this->putJson('permission/update/' . $permission->id, ['name' => 'test permission'])
+        $this->putJson('permission/edit/' . $permission->id, ['name' => 'test permission'])
             ->assertStatus(200);
         
         $this->assertDatabaseHas('permissions', [ 'id' => $permission->id, 'name' => 'test permission' ]);
@@ -96,7 +96,7 @@ class PermissionTest extends TestCase
 
         $this->actingAs($user);
 
-        $this->putJson('permission/update/' . $permission->id, ['name' => 'test permission'])
+        $this->putJson('permission/edit/' . $permission->id, ['name' => 'test permission'])
             ->assertStatus(403);
     }
 

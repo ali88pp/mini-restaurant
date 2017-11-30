@@ -8,11 +8,15 @@ Route::post('logout', 'Auth\LoginController@logout');
 
 Route::post('permission', 'PermissionController@index')->name('permision');
 Route::post('permission/create', 'PermissionController@store')->name('permision.create');
-Route::put('permission/update/{permission}', 'PermissionController@update')->name('permision.update');
+Route::put('permission/edit/{permission}', 'PermissionController@update')->name('permision.edit');
 
 Route::post('role', 'RoleController@index')->name('role');
 Route::post('role/create', 'RoleController@store')->name('role.create');
-Route::put('role/update/{role}', 'RoleController@update')->name('role.update');
+Route::put('role/edit/{role}', 'RoleController@update')->name('role.edit');
+
+Route::get('food', 'FoodController@index')->name('food');
+Route::post('food/create', 'FoodController@store')->name('food.create');
+Route::put('food/edit/{food}', 'FoodController@update')->name('food.edit');
 
 Route::post('user', function() {
     return App\User::with('roles')->paginate(3);

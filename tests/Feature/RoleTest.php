@@ -61,7 +61,7 @@ class RoleTest extends TestCase
         
         $this->actingAs($user);
 
-        $this->putJson('role/update/' . $role->id, [ 'name' => 'manager'])
+        $this->putJson('role/edit/' . $role->id, [ 'name' => 'manager'])
             ->assertStatus(200);
 
         $this->assertDatabaseHas('roles', [ 'id' => $role->id, 'name' => 'manager' ]);
@@ -70,15 +70,15 @@ class RoleTest extends TestCase
     /** @test */
     public function authorized_user_can_update_role()
     {
-        Permission::create(['name' => 'update role']);
+        Permission::create(['name' => 'edit role']);
         $user = factory(User::class)->create(['username' => 'authorized_user']);
-        $user->givePermissionTo('update role');
+        $user->givePermissionTo('edit role');
 
         $this->actingAs($user);
 
         $role = Role::create([ 'name' => 'manager wrong' ]);
 
-        $this->putJson('role/update/' . $role->id, [ 'name' => 'manager'])
+        $this->putJson('role/edit/' . $role->id, [ 'name' => 'manager'])
             ->assertStatus(200);
 
         $this->assertDatabaseHas('roles', [ 'name' => 'manager' ]);
@@ -93,7 +93,7 @@ class RoleTest extends TestCase
 
         $role = Role::create([ 'name' => 'manager wrong' ]);
 
-        $this->putJson('role/update/' . $role->id, [ 'name' => 'manager'])
+        $this->putJson('role/edit/' . $role->id, [ 'name' => 'manager'])
             ->assertStatus(403);
     }
 
