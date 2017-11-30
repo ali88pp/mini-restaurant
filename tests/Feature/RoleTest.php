@@ -12,14 +12,6 @@ class RoleTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->app->make(\Spatie\Permission\PermissionRegistrar::class)->registerPermissions();
-    }
-
-
     /** @test */
     public function administrator_can_create_role()
     {

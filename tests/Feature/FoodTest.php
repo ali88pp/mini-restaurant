@@ -13,7 +13,7 @@ class FoodTest extends TestCase
     /** @test **/
     public function user_can_create_a_new_food()
     {
-        $user = factory(User::class)->create();
+        // $user = factory(User::class)->create();
 
         $this->assertTrue(true);
     }
