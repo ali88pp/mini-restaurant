@@ -193,6 +193,7 @@ export default {
       { icon: "lock", text: "Permission", link: 'permission'},
       { icon: "mdi-folder-lock", text: "Role", link: 'role'},
       { icon: "person", text: "User", link: 'user'},
+      { icon: "add", text: "Food", link: 'food'},
       // { icon: "history", text: "Frequently contacted" },
       // { icon: "content_copy", text: "Duplicates" },
       // {
