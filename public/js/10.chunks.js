@@ -1,14 +1,14 @@
-webpackJsonp([6],{
+webpackJsonp([10],{
 
-/***/ 74:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(78)
+var __vue_script__ = __webpack_require__(93)
 /* template */
-var __vue_template__ = __webpack_require__(79)
+var __vue_template__ = __webpack_require__(94)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\User.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\Food.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -35,9 +35,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-123bcd7c", Component.options)
+    hotAPI.createRecord("data-v-1d62b855", Component.options)
   } else {
-    hotAPI.reload("data-v-123bcd7c", Component.options)
+    hotAPI.reload("data-v-1d62b855", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49,7 +49,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 78:
+/***/ 93:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95,16 +95,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'User',
+    name: 'Food',
 
     data: function data() {
         return {
             search: '',
-            headers: [{ text: 'Username', value: 'username', align: 'left' }, { text: 'Email', value: 'email', align: 'left' }, { text: 'Roles', value: 'roles', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
+            headers: [{ text: 'Code', value: 'code', align: 'left' }, { text: 'Name', value: 'name', align: 'left' }, { text: 'Cost', value: 'cost', align: 'left' }, { text: 'Price', value: 'price', align: 'left' }, { text: 'Category', value: 'category_id', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Available', value: 'is_available', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
             pagination: {
                 page: 1
             }
@@ -112,18 +115,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
 
-    computed: {
-        // ...mapState({
-        //     items: state => state.user.items,
-        // }),
-
-        items: function items() {
-            return this.$store.state.user.data !== null ? this.$store.state.user.data.data : [];
-        },
-        length: function length() {
-            return this.$store.state.user.data !== null ? this.$store.state.user.data.last_page : 0;
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
+        items: function items(state) {
+            return state.food.items;
         }
-    },
+    })),
 
     mounted: function mounted() {
         this.fetchData();
@@ -131,13 +127,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
-        fetchData: 'user/fetchData'
+        fetchData: 'food/fetchData'
     }))
 });
 
 /***/ }),
 
-/***/ 79:
+/***/ 94:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -152,7 +148,7 @@ var render = function() {
         { attrs: { xs12: "" } },
         [
           _c("v-card-title", [
-            _vm._v("\n            User             \n        ")
+            _vm._v("\n            Food             \n        ")
           ]),
           _vm._v(" "),
           _c(
@@ -193,34 +189,26 @@ var render = function() {
               headers: _vm.headers,
               items: _vm.items,
               search: _vm.search,
-              pagination: _vm.pagination,
               "hide-actions": ""
-            },
-            on: {
-              "update:pagination": function($event) {
-                _vm.pagination = $event
-              }
             },
             scopedSlots: _vm._u([
               {
                 key: "items",
                 fn: function(props) {
                   return _c("tr", {}, [
-                    _c("td", [_vm._v(_vm._s(props.item.username))]),
+                    _c("td", [_vm._v(_vm._s(props.item.code))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.email))]),
+                    _c("td", [_vm._v(_vm._s(props.item.name))]),
                     _vm._v(" "),
-                    _c("td", [
-                      _vm._v(
-                        _vm._s(
-                          props.item.roles
-                            .map(function(role) {
-                              return role.name
-                            })
-                            .join(", ")
-                        )
-                      )
-                    ]),
+                    _c("td", [_vm._v(_vm._s(props.item.cost))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(props.item.price))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(props.item.category_id))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(props.item.image))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(props.item.is_available))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.created_at))]),
                     _vm._v(" "),
@@ -253,7 +241,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-123bcd7c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-1d62b855", module.exports)
   }
 }
 
