@@ -16,6 +16,8 @@ Route::post('role', 'RoleController@index')->name('role');
 Route::post('role/create', 'RoleController@store')->name('role.create');
 Route::put('role/edit/{role}', 'RoleController@update')->name('role.edit');
 
+Route::post('user', function() { return App\User::with('roles')->paginate(3); });
+
 Route::get('food', 'FoodController@index')->name('food');
 Route::post('food/create', 'FoodController@store')->name('food.create');
 Route::put('food/edit/{food}', 'FoodController@update')->name('food.edit');
@@ -24,9 +26,7 @@ Route::get('category', 'CategoryController@index')->name('category');
 Route::post('category/create', 'CategoryController@store')->name('category.create');
 Route::put('category/edit/{category}', 'CategoryController@update')->name('category.edit');
 
-Route::post('user', function() {
-    return App\User::with('roles')->paginate(3);
-});
+Route::get('order', 'OrderController@index')->name('order');
 
 
 

@@ -15,18 +15,14 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
           $table->increments('id');
-          $table->timestamp('datetime');
-          $table->integer('table_no');
-          $table->integer('queue_no');
-          $table->integer('customer_id')->unsigned()->index();
+          $table->string('code', 10)->unique();
+          $table->timestamp('date_time');
+          $table->integer('queue');
+          $table->integer('table');
           $table->double('amount');
-          $table->decimal('vat', 5, 2);
-          $table->double('discount');
-          $table->double('grand_total'); // (amount - discount) * (1 + VAT/100)
-          $table->string('memo')->nullable();
-          $table->integer('sale_id')->unsigned()->nullable();
-          $table->integer('status')->default(0); // 0 is not yet paid, 1 is paid
-          $table->integer('order_by_id')->unsigned();
+          $table->tinyInteger('status')->default(1);
+          $table->string('created_by');
+          $table->string('updated_by');
           $table->timestamps();
           $table->softDeletes();
         });

@@ -130,7 +130,7 @@ class CategoryTest extends TestCase
 
         $response = $this->getJson('category')->assertStatus(403);
 
-        $response->assertJsonMissing([
+        $response->assertJsonMissingExact([
             'data' => [ 
                 '*' => [
                     'code',

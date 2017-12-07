@@ -9,17 +9,13 @@ class Order extends Model
   protected $table = 'orders';
 
   protected $fillable = [
-    'datetime',
-    'table_no',
-    'queue_no',
-    'customer_id',
+    'code',
+    'date_time',
+    'queue',
+    'table',
     'amount',
-    'vat',
-    'discount',
-    'grand_total',
-    'memo',
-    'sale_id',
     'status',
-    'order_by_id'
+    'created_by',
+    'updated_by',
   ];
 }
