@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Category;
 use App\Food;
 
 class FoodsTableSeeder extends Seeder
@@ -12,8 +13,13 @@ class FoodsTableSeeder extends Seeder
      */
     public function run()
     {
+        Category::truncate();
         Food::truncate();
 
-        factory(Food::class, 20)->create();
+        $category_1 = factory(Category::class)->create([ 'name' => 'Noodle/Rice soup' ]);
+        $category_2 = factory(Category::class)->create([ 'name' => 'Rice dishes' ]);
+
+        factory(Food::class, 10)->create([ 'category_id' => $category_1->id ]);
+        factory(Food::class, 10)->create([ 'category_id' => $category_2->id ]);
     }
 }

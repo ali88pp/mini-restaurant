@@ -12,7 +12,7 @@ class CreateFoodsTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {    
         Schema::create('foods', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id');

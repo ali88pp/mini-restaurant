@@ -1,5 +1,7 @@
 <?php
 
+
+
 Route::view('/', 'app')->middleware('auth');
 
 Route::get('login', 'Auth\LoginController@index')->name('login');
@@ -18,9 +20,14 @@ Route::get('food', 'FoodController@index')->name('food');
 Route::post('food/create', 'FoodController@store')->name('food.create');
 Route::put('food/edit/{food}', 'FoodController@update')->name('food.edit');
 
+Route::get('category', 'CategoryController@index')->name('category');
+Route::post('category/create', 'CategoryController@store')->name('category.create');
+Route::put('category/edit/{category}', 'CategoryController@update')->name('category.edit');
+
 Route::post('user', function() {
     return App\User::with('roles')->paginate(3);
 });
+
 
 
 
@@ -71,3 +78,10 @@ Route::post('user', function() {
 // Route::put('/order/{id}/edit', 'OrderController@update');
 // Route::get('/order/{id}', 'OrderController@show')->name('order.show');
 // Route::delete('/order/{id}', 'OrderController@destroy')->name('order.destroy');
+
+
+
+
+Route::any('{query}', function() { 
+    return redirect('/'); 
+})->where('query', '.*');

@@ -24,15 +24,6 @@ $factory->define(App\User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Category::class, function (Faker $faker) {
-    static $password;
-
-    return [
-        'category_name' => $faker->randomElement([ 'Sea Food','Drink', 'Soup' ]),
-        'sort' => 0
-    ];
-});
-
 $factory->define(App\Item::class, function (Faker $faker) {
     static $password;
 

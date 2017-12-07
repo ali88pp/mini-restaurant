@@ -1,14 +1,14 @@
-webpackJsonp([8],{
+webpackJsonp([5],{
 
-/***/ 78:
+/***/ 81:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(85)
+var __vue_script__ = __webpack_require__(91)
 /* template */
-var __vue_template__ = __webpack_require__(86)
+var __vue_template__ = __webpack_require__(92)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\Role.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\Category.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -35,9 +35,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-123f3f26", Component.options)
+    hotAPI.createRecord("data-v-ea0a5d16", Component.options)
   } else {
-    hotAPI.reload("data-v-123f3f26", Component.options)
+    hotAPI.reload("data-v-ea0a5d16", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49,7 +49,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 85:
+/***/ 91:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92,16 +92,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'Permission',
+    name: 'Food',
 
     data: function data() {
         return {
             search: '',
-            headers: [{ text: 'Name', value: 'name', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
+            headers: [{ text: 'Code', value: 'code', align: 'left' }, { text: 'Name', value: 'name', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
             pagination: {
                 page: 1
             }
@@ -111,7 +113,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
         items: function items(state) {
-            return state.role.items;
+            return state.category.items;
         }
     })),
 
@@ -121,13 +123,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
-        fetchData: 'role/fetchData'
+        fetchData: 'category/fetchData'
     }))
 });
 
 /***/ }),
 
-/***/ 86:
+/***/ 92:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -142,7 +144,7 @@ var render = function() {
         { attrs: { xs12: "" } },
         [
           _c("v-card-title", [
-            _vm._v("\n            Permission             \n        ")
+            _vm._v("\n            Food             \n        ")
           ]),
           _vm._v(" "),
           _c(
@@ -190,7 +192,11 @@ var render = function() {
                 key: "items",
                 fn: function(props) {
                   return _c("tr", {}, [
+                    _c("td", [_vm._v(_vm._s(props.item.code))]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.name))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(props.item.image))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.created_at))]),
                     _vm._v(" "),
@@ -223,7 +229,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-123f3f26", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-ea0a5d16", module.exports)
   }
 }
 
