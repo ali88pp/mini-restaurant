@@ -18,11 +18,11 @@ class CreateOrderDetailsTable extends Migration
           $table->integer('order_id')->unsigned()->index();
           $table->string('item_code', 20)->index();
           $table->string('item_name');
+          $table->integer('item_id')->unsigned()->index();
+          $table->string('item_type')->index();
           $table->float('quantity');
-          $table->char('size', 1);
-          $table->double('price');
-          $table->string('remark')->nullable();
-          $table->char('status', 2);
+          $table->double('unit_price');
+          $table->timestamps();
         });
     }
 

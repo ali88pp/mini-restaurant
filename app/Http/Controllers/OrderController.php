@@ -11,6 +11,6 @@ class OrderController extends Controller
     {
         $this->authorize('view order');
         
-        return Order::paginate();
+        return Order::with('details')->paginate();
     }
 }

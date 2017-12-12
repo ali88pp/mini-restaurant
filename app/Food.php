@@ -16,4 +16,9 @@ class Food extends Model
         'image_uri',
         'is_available',
     ];
+
+    public function order_details()
+    {
+        return $this->morphMany('App\OrderDetail', 'orderable');
+    }
 }

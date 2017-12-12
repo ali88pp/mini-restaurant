@@ -6,13 +6,22 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Order;
+use App\OrderDetail;
 
 class OrderTest extends TestCase
 {
     use RefreshDatabase;
 
+
+    protected function makeOrders()
+    {
+        return factory(Order::class, 5)->create()->each(function($order) {
+            factory(OrderDetail::class, 3)->create([ 'order_id' => $order->id ]);
+        });
+    }
+
     /** @test **/
-    public function administrator_can_view()
+    public function administrator_can_view_orders()
     {
         $this->withoutExceptionHandling();
 
@@ -20,32 +29,33 @@ class OrderTest extends TestCase
         
         $this->actingAs($user);
 
-        factory(Order::class, 20)->create();
+        $this->makeOrders();
 
-        $response = $this->getJson('order');
-
-        $response->assertJsonStructure([
+        $this->getJson('order')->assertJsonStructure([
             'data' => [ 
                 '*' => [
                     'queue',
                     'table',
                     'created_by',
                     'updated_by',
+                    'details' => [
+                        '*' => [ 'id' ],
+                    ],
                 ]
             ]
         ]);
     }
 
     /** @test **/
-    public function unauthorized_user_cannot_view()
+    public function unauthorized_user_cannot_view_orders()
     {
         $user = factory(User::class)->create(['username' => 'unauthorized_user']);
         
         $this->actingAs($user);
 
-        factory(Order::class, 20)->create();
+        $this->makeOrders();
 
-        $response = $this->getJson('order')->assertStatus(403);
+        $this->getJson('order')->assertStatus(403);
     }
 
     // /** @test */
