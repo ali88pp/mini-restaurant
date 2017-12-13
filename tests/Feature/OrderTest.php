@@ -7,6 +7,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\User;
 use App\Order;
 use App\OrderDetail;
+use Spatie\Permission\Models\Permission;
+use App\Food;
+use Carbon\Carbon;
 
 class OrderTest extends TestCase
 {
@@ -58,29 +61,41 @@ class OrderTest extends TestCase
         $this->getJson('order')->assertStatus(403);
     }
 
-    // /** @test */
-    // public function administrator_can_view_order()
-    // {
-    //     $this->withoutExceptionHandling();
+    /** @test */
+    public function authorized_user_can_create_order()
+    {        
+        $this->withoutExceptionHandling();
         
-    //     $user = $this->createSuperAdministrator();
-        
-    //     $this->actingAs($user);
+        Permission::create([ 'name' => 'create order' ]);
+        $user = factory(User::class)->create(['username' => 'authorized_user']);
+        $user->givePermissionTo('create order');
 
-    //     $this->postJson('order/create', [
-    //         'code' => str_random(10),
-    //         'queue' => 1,
-    //         'table' => 1,
-    //         'status' => 1,            
-    //     ])
-    //     ->assertStatus(201);
+        $foods = factory(Food::class, 4)->create();
         
-    //     $this->assertDatabaseHas('orders', [
-    //         'queue' => 1,
-    //         'table' => 1,
-    //         'status' => 1,
-    //         'created_by' => $user->username,  
-    //         'updated_by' => $user->username,  
-    //     ]);
-    // }
+        $this->actingAs($user);
+
+        $this->postJson('order/create', [
+            'code' => str_random(10),
+            'queue' => 1,
+            'table' => 1,
+            'status' => 1, 
+            'date_time' => Carbon::now()->format('Y-m-d'), 
+            'amount' => 100,
+            // 'details' => [
+            //     [ 'item_code' => $foods[0]->code, 'item_name' => $foods[0]->name, 'item_id' => $foods[0]->id, 'item_type' => Food::class ],
+            //     [ 'item_code' => $foods[1]->code, 'item_name' => $foods[1]->name, 'item_id' => $foods[1]->id, 'item_type' => Food::class ],
+            //     [ 'item_code' => $foods[2]->code, 'item_name' => $foods[2]->name, 'item_id' => $foods[2]->id, 'item_type' => Food::class ],
+            //     [ 'item_code' => $foods[3]->code, 'item_name' => $foods[3]->name, 'item_id' => $foods[3]->id, 'item_type' => Food::class ],
+            // ]          
+        ])
+        ->assertStatus(201);
+        
+        // $this->assertDatabaseHas('orders', [
+        //     'queue' => 1,
+        //     'table' => 1,
+        //     'status' => 1,
+        //     'created_by' => $user->username,  
+        //     'updated_by' => $user->username,  
+        // ]);
+    }
 }

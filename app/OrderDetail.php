@@ -8,7 +8,6 @@ class OrderDetail extends Model
 {
     protected $fillable = [
         'order_id',
-        'item_code',
         'item_name',
         'item_id',
         'item_type',

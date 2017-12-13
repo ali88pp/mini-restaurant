@@ -27,6 +27,25 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Event::listen(['eloquent.creating: *'], function($model)
+		{
+			if(isset($model->created_by) && !is_null($model->created_by))
+			{
+		        $model->created_by = auth()->user()->username;
+            }
+            
+            if(isset($model->updated_by) && !is_null($model->updated_by))
+			{
+		        $model->updated_by = auth()->user()->username;
+			}
+		});
+
+		Event::listen(['eloquent.updating: *'], function($model)
+		{
+			if(isset($model->updated_by) && !is_null($model->updated_by))
+			{
+		        $model->updated_by = auth()->user()->username;
+			}
+		});
     }
 }

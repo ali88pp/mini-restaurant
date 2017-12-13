@@ -27,6 +27,7 @@ Route::post('category/create', 'CategoryController@store')->name('category.creat
 Route::put('category/edit/{category}', 'CategoryController@update')->name('category.edit');
 
 Route::get('order', 'OrderController@index')->name('order');
+Route::post('order/create', 'OrderController@store')->name('order.create');
 
 
 

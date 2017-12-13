@@ -93,7 +93,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
@@ -103,7 +102,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     data: function data() {
         return {
             search: '',
-            headers: [{ text: 'Code', value: 'code', align: 'left' }, { text: 'Name', value: 'name', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
+            headers: [{ text: 'Name', value: 'name', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
             pagination: {
                 page: 1
             }
@@ -192,8 +191,6 @@ var render = function() {
                 key: "items",
                 fn: function(props) {
                   return _c("tr", {}, [
-                    _c("td", [_vm._v(_vm._s(props.item.code))]),
-                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.name))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.image))]),

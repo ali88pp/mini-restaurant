@@ -16,9 +16,8 @@ class CreateOrderDetailsTable extends Migration
         Schema::create('order_details', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('order_id')->unsigned()->index();
-          $table->string('item_code', 20)->index();
-          $table->string('item_name');
           $table->integer('item_id')->unsigned()->index();
+          $table->string('item_name');
           $table->string('item_type')->index();
           $table->float('quantity');
           $table->double('unit_price');

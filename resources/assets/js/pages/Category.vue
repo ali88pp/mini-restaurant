@@ -23,7 +23,6 @@
                 v-bind:search="search"
                 hide-actions>
                 <tr slot="items" slot-scope="props">
-                    <td>{{ props.item.code }}</td>
                     <td>{{ props.item.name }}</td>
                     <td>{{ props.item.image }}</td>                   
                     <td>{{ props.item.created_at }}</td>
@@ -45,7 +44,6 @@ export default {
         return {
             search: '',
             headers: [
-                { text: 'Code', value: 'code', align: 'left' },
                 { text: 'Name', value: 'name', align: 'left' },
                 { text: 'Image', value: 'image_uri', align: 'left' },
                 { text: 'Created At', value: 'created_at', align: 'left' },

@@ -26,9 +26,8 @@ $factory->define(App\OrderDetail::class, function (Faker $faker) {
 
     return [
         'order_id' => function() { return factory(App\Order::class)->create()->id; },
-        'item_code' => $food->code,
-        'item_name' => $food->name,
         'item_id' => $food->id,
+        'item_name' => $food->name,
         'item_type' => App\Food::class,
         'quantity' => random_int(1, 10),
         'unit_price' => $food->price,

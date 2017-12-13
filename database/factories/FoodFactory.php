@@ -4,9 +4,9 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Category::class, function (Faker $faker) {
     return [
-        'code' => str_random(10),
         'name' => $faker->name(),
         'image_uri' => null,
+        'type' => 1,
     ];
 });
 

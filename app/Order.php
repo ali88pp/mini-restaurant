@@ -20,6 +20,8 @@ class Order extends Model
     'updated_by',
   ];
 
+  protected $dates = [ 'date_time' ];
+
   public function details()
   {
     return $this->hasMany(OrderDetail::class, 'order_id');
