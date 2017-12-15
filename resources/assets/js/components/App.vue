@@ -195,6 +195,7 @@ export default {
       { icon: "person", text: "User", link: 'user' },
       { icon: "add", text: "Category", link: 'category' },
       { icon: "add", text: "Food", link: 'food' },
+      { icon: "add", text: "Beverage", link: 'beverage' },
       // { icon: "history", text: "Frequently contacted" },
       // { icon: "content_copy", text: "Duplicates" },
       // {

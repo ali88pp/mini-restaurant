@@ -10,6 +10,7 @@ const routes = [
     { path: '/role', component: () => import('./pages/Role.vue') },
     { path: '/category', component: () => import('./pages/Category.vue') },
     { path: '/food', component: () => import('./pages/Food.vue') },
+    { path: '/beverage', component: () => import('./pages/Beverage.vue') },
 ]
 const router = new VueRouter({
     mode: 'history',

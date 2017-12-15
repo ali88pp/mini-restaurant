@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\OrderDetail;
 
-class Food extends Model
+class Beverage extends Model
 {
     protected $fillable = [
         'code',
