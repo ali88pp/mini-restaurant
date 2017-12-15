@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Order;
 
 class OrderDetail extends Model
 {
@@ -15,7 +16,12 @@ class OrderDetail extends Model
         'unit_price',
     ];
 
-    public function orderable()
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function item()
     {
         return $this->morphTo();
     }

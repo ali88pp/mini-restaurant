@@ -15,9 +15,13 @@ class OrderController extends Controller
     }
 
     public function store()
-    {//dd(request()->except('details'));
+    {
+        $this->authorize('create order');
+
         $order = Order::create(request()->all());
-        // $order->details()->create(request()->only('details'));
+        $order->details()->createMany(
+            collect(request()->only('details'))->collapse()->toArray()
+        );
 
         return response([], 201);
     }

@@ -20,6 +20,20 @@ class Order extends Model
     'updated_by',
   ];
 
+  protected static function boot()
+  {
+    parent::boot();
+
+    static::creating(function($model) {
+      $model->created_by = auth()->check() ? auth()->user()->username : '';
+      $model->updated_by = auth()->check() ? auth()->user()->username : '';
+    });
+
+    static::updating(function($model) {
+      $model->updated_by = auth()->check() ? auth()->user()->username : '';
+    });
+  }
+
   protected $dates = [ 'date_time' ];
 
   public function details()

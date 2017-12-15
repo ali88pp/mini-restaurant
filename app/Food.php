@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\OrderDetail;
 
 class Food extends Model
 {
@@ -17,8 +18,8 @@ class Food extends Model
         'is_available',
     ];
 
-    public function order_details()
+    public function comments()
     {
-        return $this->morphMany('App\OrderDetail', 'orderable');
+        return $this->morphMany(OrderDetail::class, 'item');
     }
 }
