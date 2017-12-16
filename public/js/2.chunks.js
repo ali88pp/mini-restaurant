@@ -6,9 +6,9 @@ webpackJsonp([2],{
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(89)
+var __vue_script__ = __webpack_require__(90)
 /* template */
-var __vue_template__ = __webpack_require__(90)
+var __vue_template__ = __webpack_require__(91)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\Permission.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\User.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -35,9 +35,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-431a4e06", Component.options)
+    hotAPI.createRecord("data-v-123bcd7c", Component.options)
   } else {
-    hotAPI.reload("data-v-431a4e06", Component.options)
+    hotAPI.reload("data-v-123bcd7c", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49,7 +49,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 89:
+/***/ 90:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -92,16 +92,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'Permission',
+    name: 'User',
 
     data: function data() {
         return {
             search: '',
-            headers: [{ text: 'Name', value: 'name', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
+            headers: [{ text: 'Username', value: 'username', align: 'left' }, { text: 'Email', value: 'email', align: 'left' }, { text: 'Roles', value: 'roles', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
             pagination: {
                 page: 1
             }
@@ -109,11 +112,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
 
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
-        items: function items(state) {
-            return state.permission.items;
+    computed: {
+        // ...mapState({
+        //     items: state => state.user.items,
+        // }),
+
+        items: function items() {
+            return this.$store.state.user.data !== null ? this.$store.state.user.data.data : [];
+        },
+        length: function length() {
+            return this.$store.state.user.data !== null ? this.$store.state.user.data.last_page : 0;
         }
-    })),
+    },
 
     mounted: function mounted() {
         this.fetchData();
@@ -121,13 +131,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
-        fetchData: 'permission/fetchData'
+        fetchData: 'user/fetchData'
     }))
 });
 
 /***/ }),
 
-/***/ 90:
+/***/ 91:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -142,7 +152,7 @@ var render = function() {
         { attrs: { xs12: "" } },
         [
           _c("v-card-title", [
-            _vm._v("\n            Permission             \n        ")
+            _vm._v("\n            User             \n        ")
           ]),
           _vm._v(" "),
           _c(
@@ -183,14 +193,34 @@ var render = function() {
               headers: _vm.headers,
               items: _vm.items,
               search: _vm.search,
+              pagination: _vm.pagination,
               "hide-actions": ""
+            },
+            on: {
+              "update:pagination": function($event) {
+                _vm.pagination = $event
+              }
             },
             scopedSlots: _vm._u([
               {
                 key: "items",
                 fn: function(props) {
                   return _c("tr", {}, [
-                    _c("td", [_vm._v(_vm._s(props.item.name))]),
+                    _c("td", [_vm._v(_vm._s(props.item.username))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(props.item.email))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(
+                          props.item.roles
+                            .map(function(role) {
+                              return role.name
+                            })
+                            .join(", ")
+                        )
+                      )
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.created_at))]),
                     _vm._v(" "),
@@ -223,7 +253,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-431a4e06", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-123bcd7c", module.exports)
   }
 }
 

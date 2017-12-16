@@ -1,4 +1,4 @@
-webpackJsonp([5],{
+webpackJsonp([16],{
 
 /***/ 84:
 /***/ (function(module, exports, __webpack_require__) {
@@ -6,9 +6,9 @@ webpackJsonp([5],{
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(98)
+var __vue_script__ = __webpack_require__(97)
 /* template */
-var __vue_template__ = __webpack_require__(99)
+var __vue_template__ = __webpack_require__(98)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\Food.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\Beverage.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -35,9 +35,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1d62b855", Component.options)
+    hotAPI.createRecord("data-v-3da56476", Component.options)
   } else {
-    hotAPI.reload("data-v-1d62b855", Component.options)
+    hotAPI.reload("data-v-3da56476", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49,7 +49,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 98:
+/***/ 97:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -117,7 +117,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
         items: function items(state) {
-            return state.food.items;
+            return state.beverage.items;
         }
     })),
 
@@ -127,13 +127,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
-        fetchData: 'food/fetchData'
+        fetchData: 'beverage/fetchData'
     }))
 });
 
 /***/ }),
 
-/***/ 99:
+/***/ 98:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -241,7 +241,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1d62b855", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3da56476", module.exports)
   }
 }
 

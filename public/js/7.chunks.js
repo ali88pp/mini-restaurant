@@ -1,14 +1,14 @@
-webpackJsonp([5],{
+webpackJsonp([7],{
 
-/***/ 84:
+/***/ 83:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(98)
+var __vue_script__ = __webpack_require__(96)
 /* template */
-var __vue_template__ = __webpack_require__(99)
+var __vue_template__ = __webpack_require__(97)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +25,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\pages\\Food.vue"
+Component.options.__file = "resources\\assets\\js\\pages\\Category.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -35,9 +35,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1d62b855", Component.options)
+    hotAPI.createRecord("data-v-ea0a5d16", Component.options)
   } else {
-    hotAPI.reload("data-v-1d62b855", Component.options)
+    hotAPI.reload("data-v-ea0a5d16", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -49,7 +49,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 98:
+/***/ 96:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57,11 +57,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(6);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
-//
-//
-//
 //
 //
 //
@@ -107,7 +102,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     data: function data() {
         return {
             search: '',
-            headers: [{ text: 'Code', value: 'code', align: 'left' }, { text: 'Name', value: 'name', align: 'left' }, { text: 'Cost', value: 'cost', align: 'left' }, { text: 'Price', value: 'price', align: 'left' }, { text: 'Category', value: 'category_id', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Available', value: 'is_available', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
+            headers: [{ text: 'Name', value: 'name', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
             pagination: {
                 page: 1
             }
@@ -117,7 +112,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
         items: function items(state) {
-            return state.food.items;
+            return state.category.items;
         }
     })),
 
@@ -127,13 +122,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
-        fetchData: 'food/fetchData'
+        fetchData: 'category/fetchData'
     }))
 });
 
 /***/ }),
 
-/***/ 99:
+/***/ 97:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -196,19 +191,9 @@ var render = function() {
                 key: "items",
                 fn: function(props) {
                   return _c("tr", {}, [
-                    _c("td", [_vm._v(_vm._s(props.item.code))]),
-                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.name))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.cost))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.price))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.category_id))]),
-                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.image))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.is_available))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.created_at))]),
                     _vm._v(" "),
@@ -241,7 +226,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-1d62b855", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-ea0a5d16", module.exports)
   }
 }
 

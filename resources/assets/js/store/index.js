@@ -6,6 +6,7 @@ import role from './modules/role'
 import category from './modules/category'
 import food from './modules/food'
 import beverage from './modules/beverage'
+import order from './modules/order'
 
 Vue.use(Vuex)
 
@@ -17,6 +18,7 @@ const store = new Vuex.Store({
         category,
         food,
         beverage,
+        order,
     }
 })
 

@@ -11,6 +11,8 @@ const routes = [
     { path: '/category', component: () => import('./pages/Category.vue') },
     { path: '/food', component: () => import('./pages/Food.vue') },
     { path: '/beverage', component: () => import('./pages/Beverage.vue') },
+    { path: '/order', component: () => import('./pages/order/index.vue') },
+    { path: '/order/new', component: () => import('./pages/order/new.vue') },
 ]
 const router = new VueRouter({
     mode: 'history',

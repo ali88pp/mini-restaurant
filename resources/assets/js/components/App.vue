@@ -4,6 +4,7 @@
       fixed
       clipped
       app
+      disable-route-watcher
       v-model="drawer"
     >
       <v-list dense>
@@ -187,7 +188,7 @@ export default {
 
   data: () => ({
     dialog: false,
-    drawer: null,
+    drawer: false,
     items: [
       { icon: "apps", text: "Dashboard", link: '/' },
       { icon: "lock", text: "Permission", link: 'permission' },
@@ -196,6 +197,7 @@ export default {
       { icon: "add", text: "Category", link: 'category' },
       { icon: "add", text: "Food", link: 'food' },
       { icon: "add", text: "Beverage", link: 'beverage' },
+      { icon: "add", text: "Order", link: 'order' },
       // { icon: "history", text: "Frequently contacted" },
       // { icon: "content_copy", text: "Duplicates" },
       // {
