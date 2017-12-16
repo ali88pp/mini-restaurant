@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\OrderDetail;
 use App\OrderReceipt;
+use App\Receipt;
 
 class Order extends Model
 {
@@ -20,6 +21,8 @@ class Order extends Model
         'created_by',
         'updated_by',
     ];
+    
+    protected $dates = [ 'date_time' ];
 
     protected static function boot()
     {
@@ -35,15 +38,23 @@ class Order extends Model
         });
     }
 
-    protected $dates = [ 'date_time' ];
-
     public function details()
     {
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
 
-    public function receipt()
+    public function order_receipt()
     {
-        return $this->belongsTo(OrderReceipt::class, 'order_id');
+        return $this->hasOne(OrderReceipt::class, 'order_id');
+    }
+
+    public function receipts()
+    {
+        return $this->belongsToMany(Receipt::class)->using(OrderReceipt::class);
+    }
+
+    public function getReceiptAttribute()
+    {
+        return $this->receipts->first();
     }
 }

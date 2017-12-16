@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecieptsTable extends Migration
+class CreateReceiptsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRecieptsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reciepts', function (Blueprint $table) {
+        Schema::create('receipts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('code')->uniqued();
             $table->timestamp('date_time');
@@ -35,6 +35,6 @@ class CreateRecieptsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reciepts');
+        Schema::dropIfExists('receipts');
     }
 }

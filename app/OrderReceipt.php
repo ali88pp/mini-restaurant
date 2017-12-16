@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use App\Receipt;
 
 class OrderReceipt extends Pivot
 {
@@ -12,4 +13,8 @@ class OrderReceipt extends Pivot
         'order_id',
         'receipt_id',
     ];
+
+    public function receipt() {
+        return $this->BelongsTo(Receipt::class);
+    }
 }

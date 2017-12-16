@@ -33,3 +33,29 @@ $factory->define(App\OrderDetail::class, function (Faker $faker) {
         'unit_price' => $food->price,
     ];
 });
+
+
+$factory->define(App\OrderReceipt::class, function (Faker $faker) {
+    return [
+        'order_id' => function() { return factory(App\Order::class)->create()->id; },
+        'receipt_id' => function() { return factory(App\Receipt::class)->create()->id; },
+    ];
+});
+
+
+$factory->define(App\Receipt::class, function (Faker $faker) {
+    
+    $user = factory(App\User::class)->create();
+
+    return [
+        'code' => str_random(10),
+        'date_time' => Carbon::now(),
+        'amount' => 500,
+        'received_usd' => 500,
+        'received_riel' => 0,
+        'changed_usd' => 0,
+        'changed_riel' => 0,
+        'created_by' => $user->username,
+        'updated_by' => $user->username,
+    ];
+});

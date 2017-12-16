@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Order;
 use App\OrderReceipt;
 
-class Reciept extends Model
+class Receipt extends Model
 {
     protected $fillable = [
         'code',
@@ -19,6 +19,8 @@ class Reciept extends Model
         'created_by',
         'updated_by',
     ];
+
+    protected $dates = [ 'date_time' ];
 
     protected static function boot()
     {
