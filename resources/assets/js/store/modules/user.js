@@ -20,7 +20,7 @@ const mutations = {
 
 const actions = {
     fetchData ({ commit }, params) {
-        http.post('user')
+        http.get('api/user')
         .then( response => {
             commit('RECEIVE_DATA',  response.data);
         })

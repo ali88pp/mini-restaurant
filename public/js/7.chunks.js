@@ -92,7 +92,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
 
 
 
@@ -102,7 +101,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     data: function data() {
         return {
             search: '',
-            headers: [{ text: 'Name', value: 'name', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Created At', value: 'created_at', align: 'left' }, { text: 'Updated At', value: 'updated_at', align: 'left' }],
+            headers: [{ text: 'Name', value: 'name', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Type', value: 'type', align: 'left' }],
             pagination: {
                 page: 1
             }
@@ -143,7 +142,7 @@ var render = function() {
         { attrs: { xs12: "" } },
         [
           _c("v-card-title", [
-            _vm._v("\n            Food             \n        ")
+            _vm._v("\n            Category             \n        ")
           ]),
           _vm._v(" "),
           _c(
@@ -195,9 +194,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(props.item.image))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.created_at))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(props.item.updated_at))]),
+                    _c("td", [_vm._v(_vm._s(props.item.type))]),
                     _vm._v(" "),
                     _c(
                       "td",

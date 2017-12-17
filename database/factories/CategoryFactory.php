@@ -6,6 +6,6 @@ $factory->define(App\Category::class, function (Faker $faker) {
     return [
         'name' => $faker->name(),
         'image_uri' => null,
-        'type' => 1,
+        'type' => $faker->randomElements([1, 2]),
     ];
 });

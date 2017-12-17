@@ -18,7 +18,7 @@ const mutations = {
 
 const actions = {
     fetchData ({ commit }, params) {
-        http.post('permission')
+        http.get('api/permission')
         .then( response => {
             commit('RECEIVE_DATA',  response.data);
         })

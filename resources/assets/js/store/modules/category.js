@@ -18,7 +18,7 @@ const mutations = {
 
 const actions = {
     fetchData ({ commit }, params) {
-        http.get('category')
+        http.get('api/category')
         .then( response => {
             commit('RECEIVE_DATA',  response.data);
         })

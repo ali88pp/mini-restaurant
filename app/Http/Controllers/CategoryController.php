@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $this->authorize('view category');
+        // $this->authorize('view category');
 
         return Category::paginate();
     }

@@ -2,7 +2,7 @@
     <v-flex>
         <v-card xs12>
             <v-card-title>
-                Food             
+                Category             
             </v-card-title>
             <v-card-text>
                 <v-layout row wrap>
@@ -25,8 +25,7 @@
                 <tr slot="items" slot-scope="props">
                     <td>{{ props.item.name }}</td>
                     <td>{{ props.item.image }}</td>                   
-                    <td>{{ props.item.created_at }}</td>
-                    <td>{{ props.item.updated_at }}</td>
+                    <td>{{ props.item.type }}</td>
                     <td><v-btn flat color="primary">Edit</v-btn></td>
                 </tr>
             </v-data-table>
@@ -46,8 +45,7 @@ export default {
             headers: [
                 { text: 'Name', value: 'name', align: 'left' },
                 { text: 'Image', value: 'image_uri', align: 'left' },
-                { text: 'Created At', value: 'created_at', align: 'left' },
-                { text: 'Updated At', value: 'updated_at', align: 'left' },
+                { text: 'Type', value: 'type', align: 'left' },
             ],
             pagination: {
                 page: 1

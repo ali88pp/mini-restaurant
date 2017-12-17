@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('image_uri')->nullable();
-            $table->tinyInteger('type');
+            $table->tinyInteger('type'); // 1: Food, 2: Beverage, 3: Other
             $table->timestamps();
         });
     }
