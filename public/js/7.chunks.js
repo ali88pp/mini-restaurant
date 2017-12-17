@@ -1,14 +1,14 @@
 webpackJsonp([7],{
 
-/***/ 83:
+/***/ 101:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(5)
+var normalizeComponent = __webpack_require__(3)
 /* script */
-var __vue_script__ = __webpack_require__(96)
+var __vue_script__ = __webpack_require__(114)
 /* template */
-var __vue_template__ = __webpack_require__(97)
+var __vue_template__ = __webpack_require__(115)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -49,14 +49,42 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 96:
+/***/ 114:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(8);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -104,7 +132,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             headers: [{ text: 'Name', value: 'name', align: 'left' }, { text: 'Image', value: 'image_uri', align: 'left' }, { text: 'Type', value: 'type', align: 'left' }],
             pagination: {
                 page: 1
-            }
+            },
+            opened_form: false
         };
     },
 
@@ -122,12 +151,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
         fetchData: 'category/fetchData'
-    }))
+    }), {
+        showAddNewForm: function showAddNewForm() {}
+    })
 });
 
 /***/ }),
 
-/***/ 97:
+/***/ 115:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -152,7 +183,18 @@ var render = function() {
                 "v-layout",
                 { attrs: { row: "", wrap: "" } },
                 [
-                  _c("v-btn", { attrs: { color: "primary" } }, [_vm._v("New")]),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.opened_form = true
+                        }
+                      }
+                    },
+                    [_vm._v("New")]
+                  ),
                   _vm._v(" "),
                   _c("v-spacer"),
                   _vm._v(" "),
@@ -210,6 +252,112 @@ var render = function() {
               }
             ])
           })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "290" },
+          model: {
+            value: _vm.opened_form,
+            callback: function($$v) {
+              _vm.opened_form = $$v
+            },
+            expression: "opened_form"
+          }
+        },
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "headline" }, [
+                _vm._v("New Category")
+              ]),
+              _vm._v(" "),
+              _c(
+                "v-card-text",
+                [
+                  _c(
+                    "v-container",
+                    { attrs: { "grid-list-md": "" } },
+                    [
+                      _c(
+                        "v-layout",
+                        { attrs: { wrap: "" } },
+                        [
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: { label: "Name", required: "" }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-flex",
+                            { attrs: { xs12: "" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  label: "Type",
+                                  required: "",
+                                  items: ["Food", "Beverage"]
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary" },
+                      on: {
+                        click: function($event) {
+                          _vm.opened_form = false
+                        }
+                      }
+                    },
+                    [_vm._v("Save")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "primary", flat: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.opened_form = false
+                        }
+                      }
+                    },
+                    [_vm._v("Close")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
         ],
         1
       )
