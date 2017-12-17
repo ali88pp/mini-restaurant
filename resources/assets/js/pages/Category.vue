@@ -6,7 +6,7 @@
             </v-card-title>
             <v-card-text>
                 <v-layout row wrap>
-                    <v-btn color="primary">New</v-btn>
+                    <v-btn color="primary" @click="opened_form = true">New</v-btn>
                     <v-spacer></v-spacer>
                     <v-text-field
                     append-icon="search"
@@ -30,6 +30,34 @@
                 </tr>
             </v-data-table>
         </v-card>
+
+        <v-dialog v-model="opened_form" persistent max-width="290">
+            <v-card>
+                <v-card-title class="headline">New Category</v-card-title>
+                <v-card-text>
+                    <v-container grid-list-md>
+                        <v-layout wrap>
+                            <v-flex xs12>
+                                <v-text-field label="Name" required></v-text-field>
+                            </v-flex>
+                            <v-flex xs12>
+                                <v-select
+                                    label="Type"
+                                    required
+                                    :items="['Food', 'Beverage']"
+                                    >
+                                </v-select>
+                            </v-flex>
+                        </v-layout>
+                    </v-container>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary"  @click="opened_form = false">Save</v-btn>
+                    <v-btn color="primary" @click="opened_form = false" flat>Close</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
     </v-flex>
 </template>
 
@@ -49,7 +77,8 @@ export default {
             ],
             pagination: {
                 page: 1
-            }
+            },
+            opened_form: false,
         }
     },
 
@@ -66,7 +95,11 @@ export default {
     methods: {
         ...mapActions({
             fetchData: 'category/fetchData',
-        })
+        }),
+
+        showAddNewForm() {
+
+        }
     }
 }
 </script>
