@@ -2413,7 +2413,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       dialog: false,
       drawer: false,
-      items: [{ icon: "apps", text: "Dashboard", link: '/' }, { icon: "lock", text: "Permission", link: 'permission' }, { icon: "mdi-folder-lock", text: "Role", link: 'role' }, { icon: "person", text: "User", link: 'user' }, { icon: "add", text: "Category", link: 'category' }, { icon: "add", text: "Food", link: 'food' }, { icon: "add", text: "Beverage", link: 'beverage' }, { icon: "add", text: "Order", link: 'order' }]
+      items: [{ icon: "apps", text: "Dashboard", link: '/' }, { icon: "lock", text: "Permission", link: '/permission' }, { icon: "mdi-folder-lock", text: "Role", link: '/role' }, { icon: "person", text: "User", link: '/user' }, { icon: "add", text: "Category", link: '/category' }, { icon: "add", text: "Food", link: '/food' }, { icon: "add", text: "Beverage", link: '/beverage' }, { icon: "add", text: "Order", link: '/order' }]
     };
   },
 
