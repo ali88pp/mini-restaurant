@@ -33,4 +33,11 @@ class CategoryController extends Controller
 
         return $category->update(request()->all()) ? $category : false;
     }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return response([ 'category' => $category ], 200);
+    }
 }

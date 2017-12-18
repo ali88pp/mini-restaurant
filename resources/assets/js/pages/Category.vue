@@ -26,7 +26,10 @@
                     <td>{{ props.item.name }}</td>
                     <td>{{ props.item.image }}</td>                   
                     <td>{{ props.item.type }}</td>
-                    <td><v-btn flat color="primary">Edit</v-btn></td>
+                    <td>
+                        <v-btn flat color="primary">Edit</v-btn>
+                        <v-btn flat color="error" @click="destroy(props.item)">Delete</v-btn>
+                    </td>
                 </tr>
             </v-data-table>
         </v-card>
@@ -70,15 +73,28 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
+        <v-snackbar
+            :timeout="6000"
+            top
+            :color="snackbar.color"
+            v-model="snackbar.show">
+            {{ snackbar.message }}
+            <v-btn flat color="pink" @click.native="snackbar.show = false">Close</v-btn>
+        </v-snackbar>
     </v-flex>
 </template>
 
 <script>
 import { mapState , mapActions } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
+import Form from './../mixins/form'
+import Notify from './../mixins/notify'
 
 export default {
     name: 'Food',
+
+    mixins: [ Form, Notify ],
 
     data() {
         return {
@@ -100,6 +116,11 @@ export default {
             model: {
                 name: null,
                 type: null
+            },
+            snackbar: {
+                message: null,
+                show: false,
+                color: ''
             }
         }
     },
@@ -138,29 +159,22 @@ export default {
     methods: {
         ...mapActions({
             fetchData: 'category/fetchData',
-            addAsync: 'category/add',
+            create: 'category/create',
+            destroy: 'category/destroy',
         }),
 
         addNew() {
-            this.addAsync(this.model)
+            // this.validate()
+
+            this.create(this.model)
             .then( response => {
                 this.opened_form_new = false
                 this.resetModel()
             })
             .catch( error => {
-                console.log(error.response)
+                this.notify('Fail to create a new category.', 'error')
             })
         },
-
-        close() {
-            this.$v.model.$reset()
-            this.opened_form_new = false
-        },
-
-        resetModel() {
-            this.model.name = null
-            this.model.type = null
-        }
     }
 }
 </script>

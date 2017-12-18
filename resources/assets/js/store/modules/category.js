@@ -17,6 +17,11 @@ const mutations = {
 
     ADD_NEW (state, { category }) {
         state.items.push(category)
+    },
+    
+    DELETE (state, { category }) {
+        let _category = state.items.filter(el => el.id == category.id )[0]
+        state.items.splice(state.items.indexOf(_category), 1)
     }
 }
 
@@ -28,17 +33,23 @@ const actions = {
         })
     },
 
-    async add({ commit }, params) {
-        let response = await http.post('api/category/create', params)        
+    async create({ commit }, params) {
+        let response = await http.post('api/category/create', params)
         commit('ADD_NEW',  response.data)
+        return response
+    },
+    
+    async destroy({ commit }, category) {
+        let response = await http.delete(`api/category/delete/${category.id}`)        
+        commit('DELETE',  response.data)
         return response
     }
 }
 
 export default {
-  namespaced: true,
-  state,
-  getters,
-  actions,
-  mutations
+    namespaced: true,
+    state,
+    getters,
+    actions,
+    mutations
 }

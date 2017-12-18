@@ -57,6 +57,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_form__ = __webpack_require__(453);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_notify__ = __webpack_require__(454);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -134,12 +136,28 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'Food',
+
+    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_form__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3__mixins_notify__["a" /* default */]],
 
     data: function data() {
         return {
@@ -153,6 +171,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             model: {
                 name: null,
                 type: null
+            },
+            snackbar: {
+                message: null,
+                show: false,
+                color: ''
             }
         };
     },
@@ -191,25 +214,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
         fetchData: 'category/fetchData',
-        addAsync: 'category/add'
+        create: 'category/create',
+        destroy: 'category/destroy'
     }), {
         addNew: function addNew() {
             var _this = this;
 
-            this.addAsync(this.model).then(function (response) {
+            // this.validate()
+
+            this.create(this.model).then(function (response) {
                 _this.opened_form_new = false;
                 _this.resetModel();
             }).catch(function (error) {
-                console.log(error.response);
+                _this.notify('Fail to create a new category.', 'error');
             });
-        },
-        close: function close() {
-            this.$v.model.$reset();
-            this.opened_form_new = false;
-        },
-        resetModel: function resetModel() {
-            this.model.name = null;
-            this.model.type = null;
         }
     })
 });
@@ -301,7 +319,20 @@ var render = function() {
                       [
                         _c("v-btn", { attrs: { flat: "", color: "primary" } }, [
                           _vm._v("Edit")
-                        ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "v-btn",
+                          {
+                            attrs: { flat: "", color: "error" },
+                            on: {
+                              click: function($event) {
+                                _vm.destroy(props.item)
+                              }
+                            }
+                          },
+                          [_vm._v("Delete")]
+                        )
                       ],
                       1
                     )
@@ -455,6 +486,36 @@ var render = function() {
           )
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: { timeout: 6000, top: "", color: _vm.snackbar.color },
+          model: {
+            value: _vm.snackbar.show,
+            callback: function($$v) {
+              _vm.$set(_vm.snackbar, "show", $$v)
+            },
+            expression: "snackbar.show"
+          }
+        },
+        [
+          _vm._v("\n        " + _vm._s(_vm.snackbar.message) + "\n        "),
+          _c(
+            "v-btn",
+            {
+              attrs: { flat: "", color: "pink" },
+              nativeOn: {
+                click: function($event) {
+                  _vm.snackbar.show = false
+                }
+              }
+            },
+            [_vm._v("Close")]
+          )
+        ],
+        1
       )
     ],
     1
@@ -469,6 +530,51 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-ea0a5d16", module.exports)
   }
 }
+
+/***/ }),
+
+/***/ 453:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    methods: {
+        close: function close() {
+            this.resetModel();
+            this.$v.model.$reset();
+            this.opened_form_new = false;
+        },
+        validate: function validate() {
+            this.$v.model.$touch();
+            if (this.$v.model.$error) {
+                throw 'Validation failed';
+            }
+        },
+        resetModel: function resetModel() {
+            for (var prop in this.model) {
+                this.model[prop] = null;
+            }
+        }
+    }
+});
+
+/***/ }),
+
+/***/ 454:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    methods: {
+        notify: function notify(message) {
+            var color = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+
+            this.snackbar.message = message;
+            this.snackbar.color = color;
+            this.snackbar.show = true;
+        }
+    }
+});
 
 /***/ })
 

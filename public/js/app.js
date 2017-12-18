@@ -2342,20 +2342,28 @@ var mutations = {
         var category = _ref.category;
 
         state.items.push(category);
+    },
+    DELETE: function DELETE(state, _ref2) {
+        var category = _ref2.category;
+
+        var _category = state.items.filter(function (el) {
+            return el.id == category.id;
+        })[0];
+        state.items.splice(state.items.indexOf(_category), 1);
     }
 };
 
 var actions = {
-    fetchData: function fetchData(_ref2, params) {
-        var commit = _ref2.commit;
+    fetchData: function fetchData(_ref3, params) {
+        var commit = _ref3.commit;
 
         __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].get('api/category').then(function (response) {
             commit('RECEIVE_DATA', response.data);
         });
     },
-    add: function () {
-        var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref3, params) {
-            var commit = _ref3.commit;
+    create: function () {
+        var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(_ref4, params) {
+            var commit = _ref4.commit;
             var response;
             return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
@@ -2378,11 +2386,42 @@ var actions = {
             }, _callee, this);
         }));
 
-        function add(_x, _x2) {
-            return _ref4.apply(this, arguments);
+        function create(_x, _x2) {
+            return _ref5.apply(this, arguments);
         }
 
-        return add;
+        return create;
+    }(),
+    destroy: function () {
+        var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(_ref6, category) {
+            var commit = _ref6.commit;
+            var response;
+            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.next = 2;
+                            return __WEBPACK_IMPORTED_MODULE_0__http__["a" /* default */].delete('api/category/delete/' + category.id);
+
+                        case 2:
+                            response = _context2.sent;
+
+                            commit('DELETE', response.data);
+                            return _context2.abrupt('return', response);
+
+                        case 5:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this);
+        }));
+
+        function destroy(_x3, _x4) {
+            return _ref7.apply(this, arguments);
+        }
+
+        return destroy;
     }()
 };
 

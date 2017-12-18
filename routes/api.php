@@ -21,6 +21,7 @@ Route::group([ 'middleware' => 'auth:api'], function() {
     Route::get('category', 'CategoryController@index')->name('category');
     Route::post('category/create', 'CategoryController@store')->name('category.create');
     Route::put('category/edit/{category}', 'CategoryController@update')->name('category.edit');
+    Route::delete('category/delete/{category}', 'CategoryController@destroy')->name('category.delete');
 
     Route::get('food', 'FoodController@index')->name('food');
     Route::post('food/create', 'FoodController@store')->name('food.create');
