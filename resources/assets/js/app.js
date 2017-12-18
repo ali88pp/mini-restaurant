@@ -1,13 +1,15 @@
 // require('./bootstrap');
-
+import "babel-polyfill"
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import Vuelidate from 'vuelidate'
 import router from './router'
 import store from './store'
 import App from './components/App.vue'
 import Login from './pages/login.vue'
 
 Vue.use(Vuetify)
+Vue.use(Vuelidate)
 
 Vue.component('passport-clients', require('./components/passport/Clients.vue'))
 Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'))

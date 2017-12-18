@@ -18,11 +18,11 @@ class CategoryController extends Controller
     {
         $this->authorize('create category');
 
-        $this->validate(request(), [ 'name' => 'required', 'code' => 'required']);
+        $this->validate(request(), [ 'name' => 'required', 'type' => 'required']);
 
-        Category::create(request()->all());
+        $category = Category::create(request()->all());
 
-        return response(null, 201);
+        return response([ 'category' => $category ], 201);
     }
 
     public function update(Category $category)

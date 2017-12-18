@@ -55,6 +55,8 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -120,6 +122,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -133,16 +148,41 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             pagination: {
                 page: 1
             },
-            opened_form: false
+            opened_form_new: false,
+            types: [{ text: 'Food', value: 1 }, { text: 'Beverage', value: 2 }, { text: 'Other', value: 3 }],
+            model: {
+                name: null,
+                type: null
+            }
         };
     },
 
+
+    validations: {
+        model: {
+            name: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] },
+            type: { required: __WEBPACK_IMPORTED_MODULE_1_vuelidate_lib_validators__["required"] }
+        }
+    },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapState"])({
         items: function items(state) {
             return state.category.items;
         }
-    })),
+    }), {
+        nameErrors: function nameErrors() {
+            var errors = [];
+            if (!this.$v.model.name.$dirty) return errors;
+            !this.$v.model.name.required && errors.push('Name is required.');
+            return errors;
+        },
+        typeErrors: function typeErrors() {
+            var errors = [];
+            if (!this.$v.model.type.$dirty) return errors;
+            !this.$v.model.type.required && errors.push('Type is required.');
+            return errors;
+        }
+    }),
 
     mounted: function mounted() {
         this.fetchData();
@@ -150,9 +190,27 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["mapActions"])({
-        fetchData: 'category/fetchData'
+        fetchData: 'category/fetchData',
+        addAsync: 'category/add'
     }), {
-        showAddNewForm: function showAddNewForm() {}
+        addNew: function addNew() {
+            var _this = this;
+
+            this.addAsync(this.model).then(function (response) {
+                _this.opened_form_new = false;
+                _this.resetModel();
+            }).catch(function (error) {
+                console.log(error.response);
+            });
+        },
+        close: function close() {
+            this.$v.model.$reset();
+            this.opened_form_new = false;
+        },
+        resetModel: function resetModel() {
+            this.model.name = null;
+            this.model.type = null;
+        }
     })
 });
 
@@ -189,7 +247,7 @@ var render = function() {
                       attrs: { color: "primary" },
                       on: {
                         click: function($event) {
-                          _vm.opened_form = true
+                          _vm.opened_form_new = true
                         }
                       }
                     },
@@ -261,11 +319,11 @@ var render = function() {
         {
           attrs: { persistent: "", "max-width": "290" },
           model: {
-            value: _vm.opened_form,
+            value: _vm.opened_form_new,
             callback: function($$v) {
-              _vm.opened_form = $$v
+              _vm.opened_form_new = $$v
             },
-            expression: "opened_form"
+            expression: "opened_form_new"
           }
         },
         [
@@ -292,7 +350,26 @@ var render = function() {
                             { attrs: { xs12: "" } },
                             [
                               _c("v-text-field", {
-                                attrs: { label: "Name", required: "" }
+                                attrs: {
+                                  label: "Name",
+                                  required: "",
+                                  "error-messages": _vm.nameErrors
+                                },
+                                on: {
+                                  input: function($event) {
+                                    _vm.$v.model.name.$touch()
+                                  },
+                                  blur: function($event) {
+                                    _vm.$v.model.name.$touch()
+                                  }
+                                },
+                                model: {
+                                  value: _vm.model.name,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.model, "name", $$v)
+                                  },
+                                  expression: "model.name"
+                                }
                               })
                             ],
                             1
@@ -306,7 +383,25 @@ var render = function() {
                                 attrs: {
                                   label: "Type",
                                   required: "",
-                                  items: ["Food", "Beverage"]
+                                  items: _vm.types,
+                                  "item-text": "text",
+                                  "item-value": "value",
+                                  "error-messages": _vm.typeErrors
+                                },
+                                on: {
+                                  change: function($event) {
+                                    _vm.$v.model.type.$touch()
+                                  },
+                                  blur: function($event) {
+                                    _vm.$v.model.type.$touch()
+                                  }
+                                },
+                                model: {
+                                  value: _vm.model.type,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.model, "type", $$v)
+                                  },
+                                  expression: "model.type"
                                 }
                               })
                             ],
@@ -333,7 +428,7 @@ var render = function() {
                       attrs: { color: "primary" },
                       on: {
                         click: function($event) {
-                          _vm.opened_form = false
+                          _vm.addNew()
                         }
                       }
                     },
@@ -346,7 +441,7 @@ var render = function() {
                       attrs: { color: "primary", flat: "" },
                       on: {
                         click: function($event) {
-                          _vm.opened_form = false
+                          _vm.close()
                         }
                       }
                     },

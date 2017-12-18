@@ -6,7 +6,7 @@
             </v-card-title>
             <v-card-text>
                 <v-layout row wrap>
-                    <v-btn color="primary" @click="opened_form = true">New</v-btn>
+                    <v-btn color="primary" @click="opened_form_new = true">New</v-btn>
                     <v-spacer></v-spacer>
                     <v-text-field
                     append-icon="search"
@@ -31,21 +31,33 @@
             </v-data-table>
         </v-card>
 
-        <v-dialog v-model="opened_form" persistent max-width="290">
+        <v-dialog v-model="opened_form_new" persistent max-width="290">
             <v-card>
                 <v-card-title class="headline">New Category</v-card-title>
                 <v-card-text>
                     <v-container grid-list-md>
                         <v-layout wrap>
                             <v-flex xs12>
-                                <v-text-field label="Name" required></v-text-field>
+                                <v-text-field 
+                                    label="Name" 
+                                    v-model="model.name" 
+                                    required
+                                    @input="$v.model.name.$touch()"
+                                    @blur="$v.model.name.$touch()"
+                                    :error-messages="nameErrors">
+                                </v-text-field>
                             </v-flex>
                             <v-flex xs12>
                                 <v-select
                                     label="Type"
                                     required
-                                    :items="['Food', 'Beverage']"
-                                    >
+                                    :items="types"
+                                    item-text="text"
+                                    item-value="value"
+                                    v-model="model.type"
+                                    @change="$v.model.type.$touch()"
+                                    @blur="$v.model.type.$touch()"
+                                    :error-messages="typeErrors">
                                 </v-select>
                             </v-flex>
                         </v-layout>
@@ -53,8 +65,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary"  @click="opened_form = false">Save</v-btn>
-                    <v-btn color="primary" @click="opened_form = false" flat>Close</v-btn>
+                    <v-btn color="primary"  @click="addNew()">Save</v-btn>
+                    <v-btn color="primary" @click="close()" flat>Close</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -63,6 +75,7 @@
 
 <script>
 import { mapState , mapActions } from 'vuex'
+import { required } from 'vuelidate/lib/validators'
 
 export default {
     name: 'Food',
@@ -78,14 +91,44 @@ export default {
             pagination: {
                 page: 1
             },
-            opened_form: false,
+            opened_form_new: false,
+            types: [
+                { text: 'Food', value: 1 },
+                { text: 'Beverage', value: 2 },
+                { text: 'Other', value: 3 },
+            ],
+            model: {
+                name: null,
+                type: null
+            }
+        }
+    },
+
+    validations: {
+        model: {
+            name: { required },
+            type: { required },
         }
     },
 
     computed: {
         ...mapState({
             items: state => state.category.items,
-        })
+        }),
+
+        nameErrors() {
+            const errors = []
+            if (!this.$v.model.name.$dirty) return errors
+            !this.$v.model.name.required && errors.push('Name is required.')
+            return errors
+        },
+
+        typeErrors() {
+            const errors = []
+            if (!this.$v.model.type.$dirty) return errors
+            !this.$v.model.type.required && errors.push('Type is required.')
+            return errors
+        }
     },
 
     mounted() {
@@ -95,10 +138,28 @@ export default {
     methods: {
         ...mapActions({
             fetchData: 'category/fetchData',
+            addAsync: 'category/add',
         }),
 
-        showAddNewForm() {
+        addNew() {
+            this.addAsync(this.model)
+            .then( response => {
+                this.opened_form_new = false
+                this.resetModel()
+            })
+            .catch( error => {
+                console.log(error.response)
+            })
+        },
 
+        close() {
+            this.$v.model.$reset()
+            this.opened_form_new = false
+        },
+
+        resetModel() {
+            this.model.name = null
+            this.model.type = null
         }
     }
 }
