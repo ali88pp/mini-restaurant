@@ -7,31 +7,22 @@ use App\Order;
 
 class OrderController extends Controller
 {
-  public function index ()
-  {
-    return $orders = Order::all();
+    public function index()
+    {
+        $this->authorize('view order');
+        
+        return Order::with('details')->paginate();
+    }
 
-    //return view('order.index', compact('orders'));
-  }
+    public function store()
+    {
+        $this->authorize('create order');
 
+        $order = Order::create(request()->all());
+        $order->details()->createMany(
+            collect(request()->only('details'))->collapse()->toArray()
+        );
 
-  public function create()
-  {
-    return view('order.create');
-  }
-
-  public function store(Request $request)
-  {
-    return Order::create($request->all());
-    //return redirect()->route('order');
-  }
-
-  public function update(Request $request, $id)
-  {
-    $order = Order::where('id', $id)->first();
-    $order->update($request->all());
-    return $order;
-    // return redirect()->route('customer');
-  }
-
+        return response([], 201);
+    }
 }

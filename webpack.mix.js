@@ -12,4 +12,9 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .extract(['vue', 'vue-router', 'vuex', 'vuelidate', 'vuetify'])
+    .webpackConfig({
+        output: { chunkFilename: 'js/[name].chunks.js', publicPath: '/' },
+    });
+
+mix.sass('resources/assets/sass/app.scss', 'public/css');

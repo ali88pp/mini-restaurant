@@ -15,7 +15,7 @@ class CreateSaleReceiptsTable extends Migration
     {
         Schema::create('sale_receipts', function (Blueprint $table) {
             $table->increments('id');
-            $table->json('sale_id')->unsigned()->nullable();
+            $table->integer('sale_id')->unsigned()->nullable();
             $table->double('received_usd');
             $table->double('received_riel');
             $table->double('change_usd');

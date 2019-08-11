@@ -7,54 +7,37 @@ use App\Category;
 
 class CategoryController extends Controller
 {
-  public function index()
-  {
-     $categories = Category::all();
-     return $categories;
-    //  return view('category.index', compact('categories'));
-  }
+    public function index()
+    {
+        // $this->authorize('view category');
 
-  public function create()
-  {
+        return Category::paginate();
+    }
 
-    // return view('category.create');
-  }
+    public function store()
+    {
+        $this->authorize('create category');
 
-  public function store(Request $request)
-  {
-     return Category::create($request->all());
+        $this->validate(request(), [ 'name' => 'required', 'type' => 'required']);
 
-     //return redirect()->route('category');
-  }
+        $category = Category::create(request()->all());
 
-  public function show($id)
-  {
-    $category = Category::where('id', $id)->first();
+        return response([ 'category' => $category ], 201);
+    }
 
-    return view('$category.show', compact('category'));
-  }
+    public function update(Category $category)
+    {
+        $this->authorize('edit category');
 
-  public function edit($id)
-  {
-    $category = Category::where('id', $id)->first();
+        $this->validate(request(), [ 'name' => 'required', 'code' => 'required']);
 
-    //return view('category.edit', compact('category'));
-  }
+        return $category->update(request()->all()) ? $category : false;
+    }
 
-  public function update(Request $request, $id)
-  {
-    $category = Category::where('id', $id)->first();
-    $category->update($request->all());
-    return $category;
-    //return redirect()->route('category');
-  }
+    public function destroy(Category $category)
+    {
+        $category->delete();
 
-  public function destroy($id)
-  {
-    $category = Category::where('id', $id)->first();
-    $category->delete();
-
-    return redirect()->route('category');
-  }
-
+        return response([ 'category' => $category ], 200);
+    }
 }
